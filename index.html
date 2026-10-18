@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Formalizar el emprendimiento NovaIA: el producto, el plan de formación y el aval institucional. Práctica profesional en modalidad de emprendimiento.">
-<title>Formalizar NovaIA</title>
-
+<meta name="description" content="Bitácora de la práctica profesional en modalidad de emprendimiento: el desarrollo de NovaIA, un sistema de agendamiento para negocios pequeños.">
+<title>Bitácora NovaIA</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
-/* Layout: artículo de una columna (~64ch) dentro de un marco de 920px; las figuras ocupan el marco completo. */
+html{color-scheme:light}body{margin:0;background:#FFFFFF}img{max-width:100%}
+/* Bitácora NovaIA — hoja de estilos compartida
+   Layout: columna de texto (38rem) alineada a la izquierda dentro de un marco de 1280px,
+   con barra lateral fija a la derecha; las figuras ocupan todo el ancho de la columna. */
 :root{
   color-scheme:light;
   --paper:#FFFFFF;
@@ -21,12 +23,11 @@
   --accent-soft:#DCEAEB;
   --on-accent:#FFFFFF;
   --mark:#A8352F;
-  --font-display:'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  --font-body:'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --font-mono:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --font-display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --font-body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
   --measure:38rem;
 }
-
 *{box-sizing:border-box}
 body{
   background:var(--paper);
@@ -47,64 +48,40 @@ body{
 /* ---- Barra del sitio ---- */
 .sitebar{border-bottom:1px solid var(--line)}
 .sitebar-inner{
-  display:flex;
-  align-items:baseline;
-  flex-wrap:wrap;
-  gap:.5rem;
-  max-width:1280px;
-  margin-inline:auto;
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;
+  max-width:1280px;margin-inline:auto;
   padding-left:max(16px, env(safe-area-inset-left, 0px));
   padding-right:max(16px, env(safe-area-inset-right, 0px));
   padding-block:1rem;
 }
-.sitebar .brand{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:1.0625rem;
-  letter-spacing:-.02em;
-  color:var(--ink);
-}
-.sitebar .brand em{font-style:normal;color:var(--accent)}
-.sitebar .sep{color:var(--line)}
-.sitebar .blogname{
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  color:var(--ink-soft);
-}
+.sitebar a{text-decoration:none}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.0625rem;letter-spacing:-.02em;color:var(--ink)}
+.brand em{font-style:normal;color:var(--accent)}
+.sep{color:var(--line)}
+.blogname{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-soft)}
 
 /* ---- Cabecera ---- */
-.masthead{
-  border-bottom:2px solid var(--ink);
-  padding-block:2rem 1.5rem;
-  margin-bottom:2rem;
+.masthead{border-bottom:2px solid var(--ink);padding-block:2rem 1.5rem;margin-bottom:2rem}
+.kicker{
+  font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 1.25rem;
 }
+h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2rem,6vw,3.1rem);line-height:1.04;letter-spacing:-.025em;
+  text-wrap:balance;margin:0 0 .75rem;max-width:16ch;
+}
+.dek{font-size:1.1875rem;color:var(--ink-soft);margin:0 0 1.5rem;max-width:52ch;text-wrap:balance}
 .meta-strip{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.45rem .85rem;
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  color:var(--ink-soft);
-  margin:0 0 1.1rem;
+  display:flex;flex-wrap:wrap;gap:.45rem .85rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--ink-soft);margin:0 0 1.1rem;
 }
 .meta-strip .author{color:var(--ink);font-weight:500}
 .meta-strip span:not(:first-child){padding-left:.85rem;border-left:1px solid var(--line)}
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.45rem;
-  list-style:none;
-  padding:0;
-  margin:0;
-}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:0}
 .tags li{
-  padding:.22rem .7rem;
-  background:var(--accent-soft);
-  color:var(--accent);
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  border-radius:999px;
-  margin:0;
+  padding:.22rem .7rem;background:var(--accent-soft);color:var(--accent);
+  font-family:var(--font-mono);font-size:.6875rem;border-radius:999px;margin:0;
 }
 .tags li::before{display:none}
 
@@ -112,394 +89,179 @@ body{
 .cover{margin-block:0 2.25rem;max-width:100%}
 .cover svg{display:block;width:100%;height:auto;border:1px solid var(--line)}
 
-/* ---- Índice ---- */
-.toc{
-  border-left:2px solid var(--line);
-  padding:.2rem 0 .2rem 1.15rem;
-  margin:0;
-}
-.toc .label{
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  margin:0 0 .75rem;
-}
-.toc ol{margin:0;padding-left:1.15rem;font-family:var(--font-display);font-size:.9375rem}
-.toc li{margin-bottom:.4rem}
-.toc li:last-child{margin-bottom:0}
-.toc li::marker{font-family:var(--font-mono);font-size:.78em;color:var(--accent)}
-.toc a{text-decoration:none;font-weight:500}
-.toc a:hover{text-decoration:underline}
-
-/* ---- Bloque de autor ---- */
-.authorbox{
-  display:flex;
-  gap:1.1rem;
-  align-items:flex-start;
-  background:var(--surface);
-  border:1px solid var(--line);
-  padding:1.3rem;
-  margin-block:3.25rem 0;
-  max-width:var(--measure);
-  margin-inline:0;
-}
-.authorbox .avatar{
-  flex:0 0 auto;
-  width:3.25rem;
-  height:3.25rem;
-  display:grid;
-  place-items:center;
-  background:var(--accent);
-  color:var(--on-accent);
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:1.05rem;
-  border-radius:50%;
-}
-.authorbox .who{min-width:0}
-.authorbox .name{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:1rem;
-  margin-block:0 .3rem;
-}
-.authorbox .bio{font-size:.9375rem;line-height:1.55;color:var(--ink-soft);margin-block:0}
-.kicker{
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin:0 0 1.25rem;
-}
-h1{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:clamp(2rem, 6vw, 3.1rem);
-  line-height:1.04;
-  letter-spacing:-.025em;
-  text-wrap:balance;
-  margin:0 0 .75rem;
-  max-width:16ch;
-}
-.dek{
-  font-size:1.1875rem;
-  color:var(--ink-soft);
-  margin:0 0 1.5rem;
-  max-width:52ch;
-  text-wrap:balance;
-}
-.byline{
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  color:var(--ink-soft);
-  line-height:1.8;
-  margin:0;
-}
-.byline strong{color:var(--ink);font-weight:500}
+/* ---- Rejilla ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:0 3.5rem}
+.layout > article{grid-column:1;grid-row:1;min-width:0}
+.layout > .side{grid-column:2;grid-row:1;position:sticky;top:1.5rem;align-self:start}
 
 /* ---- Cuerpo ---- */
-article{min-width:0}
-article > *{
-  max-width:var(--measure);
-  margin-inline:0;
-}
-article > figure,
-article > .scroller{max-width:100%}
-
-/* ---- Rejilla de dos columnas ---- */
-.layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 230px;
-  gap:0 3.5rem;
-}
-.layout > article{grid-column:1;grid-row:1}
-.layout > .toc{grid-column:2;grid-row:1;position:sticky;top:1.5rem;align-self:start}
-
+article > *{max-width:var(--measure);margin-inline:0}
+article > figure,article > .scroller,article > .steps,article > .facts{max-width:100%}
 p{margin-block:0 1.15rem}
-.lead{
-  font-size:1.25rem;
-  line-height:1.55;
-  color:var(--ink);
-}
+.lead{font-size:1.25rem;line-height:1.55;color:var(--ink)}
 .lead::first-letter{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:3.2rem;
-  line-height:.8;
-  float:left;
-  padding:.1em .12em 0 0;
-  color:var(--accent);
+  font-family:var(--font-display);font-weight:700;font-size:3.2rem;line-height:.8;
+  float:left;padding:.1em .12em 0 0;color:var(--accent);
 }
-
 h2{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:1.75rem;
-  line-height:1.15;
-  letter-spacing:-.018em;
-  text-wrap:balance;
-  margin-block:3.25rem .4rem;
-  padding-top:1.5rem;
-  border-top:1px solid var(--line);
-  scroll-margin-top:1rem;
+  font-family:var(--font-display);font-weight:700;font-size:1.75rem;line-height:1.15;
+  letter-spacing:-.018em;text-wrap:balance;margin-block:3.25rem .4rem;
+  padding-top:1.5rem;border-top:1px solid var(--line);scroll-margin-top:1rem;
 }
-h2 .num{
-  display:block;
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  font-weight:500;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:.5rem;
-}
-h3{
-  font-family:var(--font-display);
-  font-weight:600;
-  font-size:1.1875rem;
-  letter-spacing:-.01em;
-  margin-block:2.25rem .55rem;
-}
+h3{font-family:var(--font-display);font-weight:600;font-size:1.1875rem;letter-spacing:-.01em;margin-block:2.25rem .55rem}
 a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:.07em}
 a:hover{color:var(--ink)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 strong{font-weight:600}
-
 ul{margin-block:0 1.15rem;padding-left:0;list-style:none}
-ul li{
-  position:relative;
-  padding-left:1.4rem;
-  margin-bottom:.6rem;
-}
-ul li::before{
-  content:"";
-  position:absolute;
-  left:.25rem;
-  top:.72em;
-  width:.4rem;
-  height:.4rem;
-  background:var(--accent);
-}
-
-blockquote{
-  margin-block:2rem;
-  padding:0 0 0 1.25rem;
-  border-left:3px solid var(--mark);
-  font-size:1.125rem;
-  color:var(--ink-soft);
-}
+ul li{position:relative;padding-left:1.4rem;margin-bottom:.6rem}
+ul li::before{content:"";position:absolute;left:.25rem;top:.72em;width:.4rem;height:.4rem;background:var(--accent)}
+blockquote{margin-block:2rem;padding:0 0 0 1.25rem;border-left:3px solid var(--mark);font-size:1.125rem;color:var(--ink-soft)}
 blockquote p:last-child{margin-bottom:0}
 
-/* ---- Pasos del flujo ---- */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(5, 1fr);
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
-  margin-block:2rem .6rem;
-  max-width:100%;
-}
-.step{
-  background:var(--surface);
-  padding:1.1rem 1rem 1.25rem;
-  min-width:0;
-}
+/* ---- Pasos ---- */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-block:2rem .6rem}
+.step{background:var(--surface);padding:1.1rem 1rem 1.25rem;min-width:0}
 .step .n{
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  font-weight:500;
-  color:var(--on-accent);
-  background:var(--accent);
-  width:1.45rem;
-  height:1.45rem;
-  display:grid;
-  place-items:center;
-  margin-bottom:.7rem;
+  font-family:var(--font-mono);font-size:.6875rem;font-weight:500;color:var(--on-accent);
+  background:var(--accent);width:1.45rem;height:1.45rem;display:grid;place-items:center;margin-bottom:.7rem;
 }
-.step h4{
-  font-family:var(--font-display);
-  font-weight:600;
-  font-size:.9375rem;
-  margin:0 0 .3rem;
-  letter-spacing:-.005em;
-}
-.step p{
-  font-size:.875rem;
-  line-height:1.5;
-  color:var(--ink-soft);
-  margin:0;
-}
+.step h4{font-family:var(--font-display);font-weight:600;font-size:.9375rem;margin:0 0 .3rem;letter-spacing:-.005em}
+.step p{font-size:.875rem;line-height:1.5;color:var(--ink-soft);margin:0}
 
 /* ---- Figuras ---- */
 figure{margin-block:2.25rem .6rem}
-.scroller{
-  overflow-x:auto;
-  border:1px solid var(--line);
-  background:var(--surface);
-  margin-block:2.25rem .6rem;
-  max-width:100%;
-}
+.scroller{overflow-x:auto;border:1px solid var(--line);background:var(--surface);margin-block:2.25rem .6rem;max-width:100%}
 figure > .scroller{margin:0}
 .scroller > svg{display:block;min-width:620px;width:100%;height:auto}
 svg text{font-family:var(--font-body)}
 svg text.m{font-family:var(--font-mono)}
 svg text.d{font-family:var(--font-display)}
 svg text.b{font-family:var(--font-body)}
-figcaption, .cap{
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  line-height:1.6;
-  color:var(--ink-soft);
-  margin-top:.7rem;
-  max-width:var(--measure);
-  margin-inline:0;
-}
-figcaption b, .cap b{color:var(--ink);font-weight:500}
+figcaption,.cap{font-family:var(--font-mono);font-size:.75rem;line-height:1.6;color:var(--ink-soft);margin-top:.7rem;max-width:var(--measure);margin-inline:0}
+figcaption b,.cap b{color:var(--ink);font-weight:500}
 
-/* ---- Tabla del plan ---- */
-table{
-  border-collapse:collapse;
-  width:100%;
-  min-width:700px;
-  font-size:.8125rem;
-  font-family:var(--font-display);
-  font-weight:500;
-}
+/* ---- Tablas ---- */
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:.8125rem;font-family:var(--font-display);font-weight:500}
 caption{display:none}
 th{
-  text-align:left;
-  font-family:var(--font-mono);
-  font-weight:500;
-  font-size:.6875rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  padding:.8rem .9rem;
-  border-bottom:1px solid var(--ink);
-  background:var(--surface-2);
+  text-align:left;font-family:var(--font-mono);font-weight:500;font-size:.6875rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  padding:.8rem .9rem;border-bottom:1px solid var(--ink);background:var(--surface-2);
 }
-td{
-  padding:.85rem .9rem;
-  border-bottom:1px solid var(--line);
-  vertical-align:top;
-  line-height:1.45;
-}
+td{padding:.85rem .9rem;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
 td:first-child{color:var(--ink);font-weight:600}
 td.desc{color:var(--ink-soft);font-weight:400}
-td.fecha{
-  font-family:var(--font-mono);
-  font-variant-numeric:tabular-nums;
-  white-space:nowrap;
-  color:var(--accent);
-}
+td.fecha{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--accent)}
 tbody tr:last-child td{border-bottom:none}
 
 /* ---- Caja de criterios ---- */
-.criteria{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-left:3px solid var(--accent);
-  padding:1.3rem 1.4rem;
-  margin-block:2rem;
-}
-.criteria h4{
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin:0 0 .9rem;
-  font-weight:500;
-}
+.criteria{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);padding:1.3rem 1.4rem;margin-block:2rem}
+.criteria h4{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem;font-weight:500}
 .criteria ol{margin:0;padding-left:1.1rem}
 .criteria li{margin-bottom:.7rem;font-size:.9375rem;line-height:1.55}
 .criteria li:last-child{margin-bottom:0}
 .criteria li::marker{font-family:var(--font-mono);color:var(--accent);font-size:.8em}
 
-/* ---- Datos del aval ---- */
-.facts{
-  display:grid;
-  grid-template-columns:repeat(5, 1fr);
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
-  margin-block:2rem .6rem;
-  max-width:100%;
-}
+/* ---- Datos ---- */
+.facts{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-block:2rem .6rem}
 .facts div{background:var(--surface);padding:1rem;min-width:0}
-.facts dt{
-  font-family:var(--font-mono);
-  font-size:.625rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  margin-bottom:.4rem;
-}
-.facts dd{
-  margin:0;
-  font-family:var(--font-display);
-  font-weight:600;
-  font-size:1rem;
-  font-variant-numeric:tabular-nums;
-  line-height:1.3;
-}
+.facts dt{font-family:var(--font-mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.4rem}
+.facts dd{margin:0;font-family:var(--font-display);font-weight:600;font-size:1rem;font-variant-numeric:tabular-nums;line-height:1.3}
 
-/* ---- Cierre ---- */
-.endnote{
-  margin-top:3.5rem;
-  padding-top:1.5rem;
-  border-top:2px solid var(--ink);
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  line-height:1.8;
-  color:var(--ink-soft);
+/* ---- Barra lateral ---- */
+.side{border-left:2px solid var(--line);padding:.2rem 0 .2rem 1.15rem;margin:0}
+.side .label{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 .75rem}
+.side ol,.side ul{margin:0 0 1.75rem;padding-left:1.15rem;font-family:var(--font-display);font-size:.9375rem;list-style:decimal}
+.side ul{list-style:none;padding-left:0}
+.side li{margin-bottom:.4rem;padding-left:0}
+.side li::before{display:none}
+.side li::marker{font-family:var(--font-mono);font-size:.78em;color:var(--accent)}
+.side a{text-decoration:none;font-weight:500}
+.side a:hover{text-decoration:underline}
+.side .cur{color:var(--ink-soft);font-weight:500}
+
+/* ---- Listado de entradas (portada) ---- */
+.entries{display:grid;gap:0;margin-block:0 1rem;border-top:1px solid var(--line)}
+.entry{
+  display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:0 1.5rem;
+  padding-block:2rem;border-bottom:1px solid var(--line);
 }
-.endnote a{display:inline-block}
+.entry .idx{font-family:var(--font-mono);font-size:.75rem;color:var(--accent);padding-top:.45rem;letter-spacing:.08em}
+.entry h2{
+  font-family:var(--font-display);font-weight:700;font-size:1.625rem;line-height:1.12;
+  letter-spacing:-.02em;margin:0 0 .4rem;padding:0;border:0;max-width:22ch;
+}
+.entry h2 a{text-decoration:none;color:var(--ink)}
+.entry h2 a:hover{color:var(--accent)}
+.entry .sub{font-size:1.0625rem;color:var(--ink-soft);margin:0 0 .8rem;max-width:var(--measure)}
+.entry .emeta{font-family:var(--font-mono);font-size:.6875rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.3rem .8rem;margin:0 0 .9rem}
+.entry .emeta span:not(:first-child){padding-left:.8rem;border-left:1px solid var(--line)}
+.entry .go{font-family:var(--font-display);font-weight:600;font-size:.9375rem;text-decoration:none}
+.entry .go:hover{text-decoration:underline}
+
+/* ---- Navegación entre entradas ---- */
+.postnav{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;border-top:2px solid var(--ink);margin-block:3.25rem 0;padding-top:1.1rem;max-width:var(--measure)}
+.postnav a{font-family:var(--font-display);font-weight:600;font-size:.9375rem;text-decoration:none}
+.postnav a:hover{text-decoration:underline}
+.postnav .nolink{font-family:var(--font-mono);font-size:.8125rem;color:var(--ink-soft)}
+
+/* ---- Autor ---- */
+.authorbox{display:flex;gap:1.1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);padding:1.3rem;margin-block:2rem 0;max-width:var(--measure)}
+.authorbox .avatar{
+  flex:0 0 auto;width:3.25rem;height:3.25rem;display:grid;place-items:center;
+  background:var(--accent);color:var(--on-accent);font-family:var(--font-display);
+  font-weight:700;font-size:1.05rem;border-radius:50%;
+}
+.authorbox .who{min-width:0}
+.authorbox .name{font-family:var(--font-display);font-weight:700;font-size:1rem;margin-block:0 .3rem}
+.authorbox .bio{font-size:.9375rem;line-height:1.55;color:var(--ink-soft);margin-block:0}
 
 @media (max-width:1040px){
   .layout{grid-template-columns:1fr;gap:0}
-  .layout > .toc{
-    grid-column:1;grid-row:1;position:static;
-    border-left:0;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:1.1rem 0;
-    margin-block:0 2.75rem;
-    max-width:var(--measure);
+  .layout > .side{
+    grid-column:1;grid-row:1;position:static;border-left:0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:1.1rem 0;margin-block:0 2.75rem;max-width:var(--measure);
   }
+  .side ol,.side ul{margin-bottom:0}
+  .side .alt{display:none}
   .layout > article{grid-column:1;grid-row:2}
 }
-@media (max-width:880px){
-  .steps{grid-template-columns:1fr}
-}
+@media (max-width:880px){.steps{grid-template-columns:1fr}}
 @media (max-width:760px){
   .facts{grid-template-columns:1fr}
   .facts div{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
   .facts dt{margin-bottom:0}
+  .entry{grid-template-columns:1fr;gap:0}
+  .entry .idx{padding-top:0;margin-bottom:.5rem}
 }
 @media (max-width:520px){
   body{font-size:1rem}
   .lead{font-size:1.125rem}
   h2{font-size:1.5rem}
+  .entry h2{font-size:1.375rem}
 }
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
-</style>
-<style>
-html{color-scheme:light}
-body{margin:0;background:#FFFFFF}
-img{max-width:100%}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
 <nav class="sitebar">
   <div class="sitebar-inner">
-    <span class="brand">Nova<em>IA</em></span>
+    <a href="index.html"><span class="brand">Nova<em>IA</em></span></a>
+    <span class="sep">·</span>
+    <span class="blogname">Bitácora de práctica profesional</span>
+  </div>
+</nav>
+
+<main>
+
+<section id="v-home" class="view">
+<nav class="sitebar">
+  <div class="sitebar-inner">
+    <a href="#v-home"><span class="brand">Nova<em>IA</em></span></a>
     <span class="sep">·</span>
     <span class="blogname">Bitácora de práctica profesional</span>
   </div>
@@ -508,18 +270,18 @@ img{max-width:100%}
 <div class="wrap">
 
 <header class="masthead">
-  <p class="kicker">Semanas 7 y 8 · Formalización</p>
-  <h1>Cuando la idea se vuelve compromiso</h1>
-  <p class="dek">Formalizar el emprendimiento: el producto que estoy construyendo, el plan de formación que radiqué y el respaldo que lo sostiene.</p>
+  <p class="kicker">Práctica profesional · Modalidad emprendimiento</p>
+  <h1>Bitácora de una práctica</h1>
+  <p class="dek">Registro del desarrollo de NovaIA, un emprendimiento de automatización para negocios pequeños, durante la práctica profesional de Ingeniería de Sistemas.</p>
   <div class="meta-strip">
     <span class="author">Andrés Camilo Jaramillo Rodríguez</span>
-    <span>17 de octubre de 2026</span>
-    <span>9 min de lectura</span>
-    <span>Ingeniería de Sistemas, <a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
+    <span>Medellín, Colombia</span>
+    <span>24 ago – 13 dic de 2026</span>
+    <span><a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
   </div>
   <ul class="tags">
     <li>Emprendimiento</li>
-    <li>Práctica profesional</li>
+    <li>Automatización</li>
     <li>Formalización</li>
     <li>NovaIA</li>
   </ul>
@@ -585,47 +347,164 @@ img{max-width:100%}
   <circle cx="846" cy="62" r="33" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.5"/>
   <path d="M831 62 l10 11 l20 -23" stroke="var(--accent)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-<figcaption>Los tres documentos de los que habla esta entrada: el plan de formación, el calendario de fases y el producto que sustentan.</figcaption>
+<figcaption>Los tres documentos de los que hablan estas entradas: el plan de formación, el calendario de fases y el producto que sustentan.</figcaption>
 </figure>
 
 <div class="layout">
-<aside class="toc">
-  <p class="label">En esta entrada</p>
-  <ol>
-    <li><a href="#producto">El producto que estoy ofreciendo</a></li>
-    <li><a href="#plan">El plan de formación</a></li>
-    <li><a href="#pertinencia">Por qué este producto, y con qué respaldo</a></li>
-    <li><a href="#cierre">Qué me deja formalizar</a></li>
-  </ol>
+<aside class="side">
+  <p class="label">Sobre esta bitácora</p>
+  <p style="font-size:.875rem;line-height:1.55;color:var(--ink-soft);margin:0 0 1.75rem">Tres entradas publicadas durante las semanas 7 y 8 de la práctica, dedicadas a la formalización de documentos y al diligenciamiento del plan de formación.</p>
+  <p class="label">Las tres entradas</p>
+  <ul>
+        <li><a href="#v-1">Una silla vacía cuesta plata</a></li>
+    <li><a href="#v-2">Poner fecha a lo que falta</a></li>
+    <li><a href="#v-3">Nueve ideas, un producto</a></li>
+  </ul>
 </aside>
 
 <article>
 
-<p class="lead">Llevo siete semanas de práctica profesional en modalidad de emprendimiento. Las primeras fueron de investigación: entender el sector, mirar qué problemas se repiten en los negocios pequeños, decidir a quién le iba a vender. Trabajo cómodo, porque todo seguía siendo reversible.</p>
+<p class="lead">Estoy haciendo mi práctica profesional en modalidad de emprendimiento. El proyecto es NovaIA, una empresa que automatiza tareas repetitivas en negocios pequeños, y su primer producto es un sistema de agendamiento para barberías y salones de belleza.</p>
 
-<p>Esta semana el tema fue otro. Tocó formalizar: escribir qué voy a entregar, en qué fecha y bajo qué respaldo institucional. Ahí la idea deja de ser flexible.</p>
+<p>Las primeras semanas fueron de investigación: entender el sector, mirar qué problemas se repiten, decidir a quién le iba a vender. Esta semana el tema fue otro. Tocó formalizar: escribir qué voy a entregar, en qué fecha y bajo qué respaldo institucional.</p>
 
-<p>Esta entrada cuenta tres cosas: qué es exactamente el producto que estoy construyendo, cómo quedó el plan de formación que radiqué, y por qué sostengo que esta solución responde al problema que identifiqué.</p>
+<p>Las tres entradas que siguen recorren ese proceso. La primera describe el producto en detalle. La segunda, los documentos que formalizan la práctica y cómo quedó diligenciado el plan de formación. La tercera, por qué escogí este producto entre varias alternativas y qué aval lo sostiene.</p>
 
-<h2 id="producto"><span class="num">Primera parte</span>El producto que estoy ofreciendo</h2>
+<div class="entries">
+  <article class="entry">
+    <div class="idx">01</div>
+    <div>
+      <h2><a href="#v-1">Una silla vacía cuesta plata</a></h2>
+      <p class="sub">Qué es NovaIA y qué hace exactamente el primer producto que estoy construyendo.</p>
+      <div class="emeta">
+        <span>15 oct 2026</span>
+        <span>7 min de lectura</span>
+        <span>Producto · Agendamiento · NovaIA</span>
+      </div>
+      <p>El emprendimiento, el segmento al que le vendo, el ciclo completo del servicio y las herramientas con las que está construido.</p>
+      <a class="go" href="#v-1">Leer la entrada →</a>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="idx">02</div>
+    <div>
+      <h2><a href="#v-2">Poner fecha a lo que falta</a></h2>
+      <p class="sub">Los documentos que formalizan una práctica de emprendimiento y cómo quedó diligenciado el plan de formación.</p>
+      <div class="emeta">
+        <span>16 oct 2026</span>
+        <span>6 min de lectura</span>
+        <span>Formalización · Plan de formación · Práctica</span>
+      </div>
+      <p>Cuatro documentos encadenados, seis fases con entregables verificables, y por qué el formato se llenó así y no semana a semana.</p>
+      <a class="go" href="#v-2">Leer la entrada →</a>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="idx">03</div>
+    <div>
+      <h2><a href="#v-3">Nueve ideas, un producto</a></h2>
+      <p class="sub">Cómo escogí qué construir entre varias opciones, y qué respaldo institucional sostiene el proyecto.</p>
+      <div class="emeta">
+        <span>17 oct 2026</span>
+        <span>7 min de lectura</span>
+        <span>Decisión · Pertinencia · Aval</span>
+      </div>
+      <p>Los tres criterios que descartaron seis alternativas, por qué el agendamiento pasó y qué significa tener el aval de la universidad.</p>
+      <a class="go" href="#v-3">Leer la entrada →</a>
+    </div>
+  </article>
+</div>
+
+</article>
+</div>
+
+<aside class="authorbox">
+  <div class="avatar" aria-hidden="true">AJ</div>
+  <div class="who">
+    <p class="name">Andrés Camilo Jaramillo Rodríguez</p>
+    <p class="bio">Estudiante de Ingeniería de Sistemas en UNIMINUTO. Escribe aquí el avance de su práctica profesional en modalidad de emprendimiento, donde desarrolla NovaIA, un proyecto de automatización para negocios pequeños en Medellín.</p>
+  </div>
+</aside>
+</div>
+</section>
+
+<section id="v-1" class="view">
+<nav class="sitebar">
+  <div class="sitebar-inner">
+    <a href="#v-home"><span class="brand">Nova<em>IA</em></span></a>
+    <span class="sep">·</span>
+    <span class="blogname">Bitácora de práctica profesional</span>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Entrada 1 de 3 · Semanas 7 y 8</p>
+  <h1>Una silla vacía cuesta plata</h1>
+  <p class="dek">Qué es NovaIA y qué hace exactamente el primer producto que estoy construyendo.</p>
+  <div class="meta-strip">
+    <span class="author">Andrés Camilo Jaramillo Rodríguez</span>
+    <span>15 de octubre de 2026</span>
+    <span>7 min de lectura</span>
+    <span>Ingeniería de Sistemas, <a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
+  </div>
+  <ul class="tags">
+    <li>Producto</li>
+    <li>Agendamiento</li>
+    <li>NovaIA</li>
+  </ul>
+</header>
+
+<div class="layout">
+<aside class="side">
+  <p class="label">En esta entrada</p>
+  <ol>
+    <li><a href="#que-es">Qué es NovaIA</a></li>
+    <li><a href="#a-quien">A quién le vendo</a></li>
+    <li><a href="#problema">Qué problema resuelve</a></li>
+    <li><a href="#funciona">Cómo funciona</a></li>
+    <li><a href="#se-ve">Cómo se ve</a></li>
+    <li><a href="#construido">Con qué está construido</a></li>
+    <li><a href="#no-hace">Qué no hace</a></li>
+  </ol>
+  <div class="alt">
+  <p class="label">Las tres entradas</p>
+  <ul>
+    <li><span class="cur">Una silla vacía cuesta plata</span></li>
+    <li><a href="#v-2">Poner fecha a lo que falta</a></li>
+    <li><a href="#v-3">Nueve ideas, un producto</a></li>
+  </ul>
+  </div>
+</aside>
+
+<article>
+
+<p class="lead">Cuando un cliente no llega a su cita, la silla se queda vacía y esa media hora no se recupera. No es una catástrofe. Es una fuga pequeña y constante que casi ningún negocio mide, porque medirla también cuesta trabajo.</p>
+
+<p>Esa fuga es el punto por donde entra el primer producto de NovaIA. Esta entrada describe en detalle qué es el emprendimiento, a quién le vende, qué hace exactamente el producto y con qué está construido.</p>
+
+<h2 id="que-es">Qué es NovaIA</h2>
 
 <p><strong>NovaIA – Soluciones Digitales Inteligentes</strong> es un emprendimiento dedicado a automatizar tareas repetitivas en negocios pequeños. La premisa es sencilla: la tecnología para resolver esos problemas ya existe y ya es barata, pero viene empaquetada para empresas grandes. Lo que falta es alguien que la acerque en un lenguaje que un dueño de negocio entienda y a un precio que pueda pagar.</p>
 
 <p>El primer producto es un sistema de agendamiento en línea.</p>
 
-<h3>A quién va dirigido</h3>
+<h2 id="a-quien">A quién le vendo</h2>
 
 <p>El mercado inicial son barberías y salones de belleza de una a cinco sillas, ubicados en Laureles-Estadio y Envigado.</p>
 
 <p>Aunque suenan como dos negocios distintos, la clasificación económica del país los agrupa en el mismo renglón: el <a href="https://dian-rut.com/codigo-ciiu/9602/" target="_blank" rel="noopener">código CIIU 9602</a> cubre tanto el afeitado y recorte de barba como el corte, el peinado, la tintura, la manicura y los demás tratamientos de belleza. Operan igual, agendan igual y pierden dinero por lo mismo.</p>
 
-<h3>Qué problema resuelve</h3>
+<p>El tamaño importa tanto como el rubro. En un negocio de una a cinco sillas el propietario atiende y administra al mismo tiempo, no tiene a nadie encargado de la agenda y tampoco puede costear software empresarial. Ese es el punto exacto donde el problema duele y la solución alcanza.</p>
+
+<h2 id="problema">Qué problema resuelve</h2>
 
 <p>Hoy la mayoría agenda por WhatsApp y anota en un cuaderno. Funciona mientras el negocio es pequeño. Cuando crece aparecen tres cosas: mensajes que no alcanzan a responder mientras están atendiendo, citas que se cruzan o se olvidan, y clientes que no llegan porque nadie les recordó.</p>
 
-<p>Cada una tiene un costo medible. Una silla vacía a las tres de la tarde no se recupera.</p>
+<p>Las tres tienen un costo medible, y las tres son del mismo tipo: no son fallas del servicio, son fallas del trámite alrededor del servicio. El barbero corta bien; lo que falla es todo lo que pasa antes y después.</p>
 
-<h3>Cómo funciona</h3>
+<h2 id="funciona">Cómo funciona</h2>
 
 <div class="steps">
   <div class="step">
@@ -656,7 +535,9 @@ img{max-width:100%}
 </div>
 <p class="cap"><b>Ciclo completo del servicio.</b> Entre el paso 1 y el paso 5 el propietario no tiene que escribir un solo mensaje.</p>
 
-<h3>Cómo se ve</h3>
+<p>El cliente no instala nada ni crea una cuenta: abre un enlace, ve lo que hay libre y reserva. Esa fricción baja es deliberada, porque cada paso adicional que se le pide a un cliente es un porcentaje de reservas que no se completan.</p>
+
+<h2 id="se-ve">Cómo se ve</h2>
 
 <figure>
 <div class="scroller">
@@ -736,8 +617,11 @@ img{max-width:100%}
 <figcaption><b>Boceto de la pantalla de reserva.</b> El negocio, los precios y la dirección son un ejemplo de demostración. Los horarios en línea punteada ya están ocupados: el cliente nunca ve una opción que no exista, que es lo que hoy produce los cruces de citas.</figcaption>
 </figure>
 
-<h3>Con qué está construido</h3>
+<p>La pantalla sigue el orden en que una persona piensa su cita: primero qué servicio quiere, después qué día le sirve y por último a qué hora. Cada elección filtra la siguiente, de modo que la duración del servicio determina los espacios que se muestran. Un corte de treinta minutos y una tintura de tres horas no pueden ofrecer los mismos horarios.</p>
 
+<h2 id="construido">Con qué está construido</h2>
+
+<figure>
 <div class="scroller">
 <svg viewBox="0 0 700 372" role="img" aria-label="Arquitectura del sistema: el navegador del cliente consulta la aplicación en Google Apps Script, que lee y escribe en una hoja de cálculo, archiva comprobantes en Drive y envía correos; Looker Studio lee la hoja para armar el tablero.">
   <defs>
@@ -784,17 +668,146 @@ img{max-width:100%}
   <text x="120" y="340" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">tablero del dueño</text>
 </svg>
 </div>
-<p class="cap"><b>Arquitectura del sistema.</b> No hay servidor propio: la aplicación vive dentro de <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">Apps Script</a> y el tablero se arma en <a href="https://lookerstudio.google.com" target="_blank" rel="noopener">Looker Studio</a> leyendo la misma hoja de cálculo donde quedan las citas.</p>
+<figcaption><b>Arquitectura del sistema.</b> No hay servidor propio: la aplicación vive dentro de <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">Apps Script</a> y el tablero se arma en <a href="https://lookerstudio.google.com" target="_blank" rel="noopener">Looker Studio</a> leyendo la misma hoja de cálculo donde quedan las citas.</figcaption>
+</figure>
 
 <p>La decisión técnica más importante fue no pagar infraestructura. Todo el sistema corre sobre herramientas de uso gratuito, con límites diarios muy por encima de lo que mueve un negocio de este tamaño.</p>
 
-<p>No es una limitación. Es coherencia: un emprendimiento que promete soluciones accesibles para negocios pequeños no puede arrancar con una estructura de costos que lo obligue a cobrar caro.</p>
+<p>No es una limitación. Es coherencia: un emprendimiento que promete soluciones accesibles para negocios pequeños no puede arrancar con una estructura de costos que lo obligue a cobrar caro. Y hay un beneficio adicional que no es menor: la información del negocio queda en una hoja de cálculo que el propietario puede abrir, revisar y llevarse cuando quiera. No queda secuestrada en una plataforma.</p>
 
-<h2 id="plan"><span class="num">Segunda parte</span>El plan de formación</h2>
+<h2 id="no-hace">Qué no hace</h2>
 
-<h3>Qué documentos formalizan esta práctica</h3>
+<p>Delimitar el producto es tan importante como describirlo, así que conviene decir con la misma precisión qué queda por fuera:</p>
 
-<p>Una práctica en modalidad de emprendimiento no se formaliza con un solo papel. Son cuatro documentos encadenados, y cada uno depende del anterior:</p>
+<ul>
+  <li><strong>No lleva la contabilidad.</strong> Registra lo que se cobró, pero no causa, no concilia y no reemplaza al contador.</li>
+  <li><strong>No emite factura electrónica.</strong> El comprobante que genera es un documento de servicio, sin validez fiscal ante la DIAN. Integrarse con un proveedor autorizado es un paso posterior, no parte de esta versión.</li>
+  <li><strong>No maneja inventario ni nómina.</strong> Son necesidades reales de estos negocios, pero de otro producto.</li>
+  <li><strong>No sustituye el trato con el cliente.</strong> Automatiza el trámite, no la atención. Quien quiera hablar con el barbero va a seguir hablando con el barbero.</li>
+</ul>
+
+<p>Esa última línea resume la propuesta mejor que cualquier lista de funciones. El valor no está en que el negocio se vuelva automático, sino en que el dueño recupere el tiempo que hoy gasta coordinando, para dedicarlo a lo que sí le genera ingresos.</p>
+
+<nav class="postnav">
+  <a href="#v-home">← Volver a la portada</a>
+  <a href="#v-2">Poner fecha a lo que falta →</a>
+</nav>
+
+</article>
+</div>
+
+<aside class="authorbox">
+  <div class="avatar" aria-hidden="true">AJ</div>
+  <div class="who">
+    <p class="name">Andrés Camilo Jaramillo Rodríguez</p>
+    <p class="bio">Estudiante de Ingeniería de Sistemas en UNIMINUTO. Escribe aquí el avance de su práctica profesional en modalidad de emprendimiento, donde desarrolla NovaIA, un proyecto de automatización para negocios pequeños en Medellín.</p>
+  </div>
+</aside>
+</div>
+</section>
+
+<section id="v-2" class="view">
+<nav class="sitebar">
+  <div class="sitebar-inner">
+    <a href="#v-home"><span class="brand">Nova<em>IA</em></span></a>
+    <span class="sep">·</span>
+    <span class="blogname">Bitácora de práctica profesional</span>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Entrada 2 de 3 · Semanas 7 y 8</p>
+  <h1>Poner fecha a lo que falta</h1>
+  <p class="dek">Los documentos que formalizan una práctica de emprendimiento y cómo quedó diligenciado el plan de formación.</p>
+  <div class="meta-strip">
+    <span class="author">Andrés Camilo Jaramillo Rodríguez</span>
+    <span>16 de octubre de 2026</span>
+    <span>6 min de lectura</span>
+    <span>Ingeniería de Sistemas, <a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
+  </div>
+  <ul class="tags">
+    <li>Formalización</li>
+    <li>Plan de formación</li>
+    <li>Práctica</li>
+  </ul>
+</header>
+
+<div class="layout">
+<aside class="side">
+  <p class="label">En esta entrada</p>
+  <ol>
+    <li><a href="#documentos">Qué documentos formalizan la práctica</a></li>
+    <li><a href="#diligenciado">Cómo quedó diligenciado</a></li>
+    <li><a href="#fases">Por qué en fases y no en semanas</a></li>
+    <li><a href="#obliga">Lo que el formato obliga a decidir</a></li>
+  </ol>
+  <div class="alt">
+  <p class="label">Las tres entradas</p>
+  <ul>
+    <li><a href="#v-1">Una silla vacía cuesta plata</a></li>
+    <li><span class="cur">Poner fecha a lo que falta</span></li>
+    <li><a href="#v-3">Nueve ideas, un producto</a></li>
+  </ul>
+  </div>
+</aside>
+
+<article>
+
+<p class="lead">Una idea de emprendimiento aguanta cualquier cosa mientras viva en la cabeza. Siempre cabe una función más, siempre se puede mover una fecha. El momento en que eso se acaba es cuando hay que escribirla en un formato con columnas y plazos.</p>
+
+<p>Esta semana me tocó ese momento. Esta entrada cuenta qué documentos formalizan una práctica en modalidad de emprendimiento y cómo quedó diligenciado el plan de formación que radiqué.</p>
+
+<h2 id="documentos">Qué documentos formalizan la práctica</h2>
+
+<p>Una práctica en modalidad de emprendimiento no se formaliza con un solo papel. Son cuatro documentos encadenados, y cada uno depende del anterior.</p>
+
+<figure>
+<div class="scroller">
+<svg viewBox="0 0 760 196" role="img" aria-label="Cadena de los cuatro documentos que formalizan la práctica: propuesta, formato de inscripción, plan de formación y entregables por fase.">
+  <defs>
+    <marker id="fd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-soft)"/>
+    </marker>
+  </defs>
+  <g stroke="var(--ink-soft)" stroke-width="1.5" fill="none" marker-end="url(#fd)">
+    <path d="M174 100 H202"/><path d="M364 100 H392"/><path d="M554 100 H582"/>
+  </g>
+  <g>
+    <rect x="16" y="52" width="158" height="96" rx="3" fill="var(--surface-2)" stroke="var(--line)"/>
+    <text x="95" y="80" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">Propuesta</text>
+    <text x="95" y="96" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">de práctica</text>
+    <text x="95" y="118" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">objetivo, justificación</text>
+    <text x="95" y="131" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">y alcance</text>
+  </g>
+  <g>
+    <rect x="206" y="52" width="158" height="96" rx="3" fill="var(--surface-2)" stroke="var(--line)"/>
+    <text x="285" y="80" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">Formato de</text>
+    <text x="285" y="96" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">inscripción</text>
+    <text x="285" y="118" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">fechas, horario</text>
+    <text x="285" y="131" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">y total de horas</text>
+  </g>
+  <g>
+    <rect x="396" y="52" width="158" height="96" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="475" y="80" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">Plan de</text>
+    <text x="475" y="96" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">formación</text>
+    <text x="475" y="118" text-anchor="middle" class="m" font-size="9" fill="var(--accent)">actividades, entregables</text>
+    <text x="475" y="131" text-anchor="middle" class="m" font-size="9" fill="var(--accent)">y fechas</text>
+  </g>
+  <g>
+    <rect x="586" y="52" width="158" height="96" rx="3" fill="var(--surface-2)" stroke="var(--line)"/>
+    <text x="665" y="80" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">Entregables</text>
+    <text x="665" y="96" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--ink)">por fase</text>
+    <text x="665" y="118" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">la evidencia de</text>
+    <text x="665" y="131" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">que se cumplió</text>
+  </g>
+  <text x="16" y="30" class="m" font-size="9.5" letter-spacing="1.4" fill="var(--ink-soft)">CADA UNO DEPENDE DEL ANTERIOR</text>
+  <text x="475" y="176" text-anchor="middle" class="m" font-size="9" fill="var(--accent)">el único que escribo de principio a fin</text>
+</svg>
+</div>
+<figcaption><b>La cadena de formalización.</b> Sin propuesta aprobada no hay inscripción; sin inscripción no hay condiciones que medir; sin plan no hay contra qué verificar el avance.</figcaption>
+</figure>
 
 <ul>
   <li><strong>La propuesta de práctica.</strong> Describe el emprendimiento, su objetivo y su justificación. Es la que Centro Progresa revisa y aprueba; sin ella no hay práctica.</li>
@@ -803,12 +816,13 @@ img{max-width:100%}
   <li><strong>Los entregables de cada fase.</strong> Son la evidencia de que el plan se cumplió. Sin ellos el plan queda en intención.</li>
 </ul>
 
-<p>De los cuatro, el plan de formación es el único que escribo yo de principio a fin, y por eso es donde más se nota qué tan claro tengo el proyecto.</p>
+<p>De los cuatro, el plan de formación es el único que escribo yo de principio a fin. Por eso es donde más se nota qué tan claro tengo el proyecto: la propuesta admite generalidades, el plan no.</p>
 
-<h3>Cómo quedó diligenciado</h3>
+<h2 id="diligenciado">Cómo quedó diligenciado</h2>
 
-<p>El plan de formación es el documento donde queda escrito qué voy a entregar y cuándo. Lo diligencié en el formato institucional y lo organicé en seis fases.</p>
+<p>Lo organicé en seis fases, repartidas sobre el periodo real de la práctica.</p>
 
+<figure>
 <div class="scroller">
 <svg viewBox="0 0 760 300" role="img" aria-label="Línea de tiempo de las seis fases del plan de formación, del 24 de agosto al 13 de diciembre de 2026, con la fase de construcción como la más extensa.">
   <path d="M240 34 V252 M273 34 V252 M398 34 V252 M526 34 V252 M650 34 V252" stroke="var(--line)" stroke-width="1" fill="none" stroke-dasharray="2 4"/>
@@ -850,7 +864,8 @@ img{max-width:100%}
   <text x="50" y="277" class="m" font-size="9" fill="var(--ink-soft)">construcción y cierre</text>
 </svg>
 </div>
-<p class="cap"><b>Las seis fases sobre el calendario real.</b> Cuatro fases de análisis y diseño ocupan la primera mitad del periodo; la construcción del sistema es, con diferencia, la fase más larga.</p>
+<figcaption><b>Las seis fases sobre el calendario real.</b> Cuatro fases de análisis y diseño ocupan la primera mitad del periodo; la construcción del sistema es, con diferencia, la fase más larga.</figcaption>
+</figure>
 
 <div class="scroller">
 <table>
@@ -905,21 +920,148 @@ img{max-width:100%}
 </div>
 <p class="cap"><b>El plan tal como quedó radicado.</b> Seis filas, seis entregables verificables.</p>
 
-<h3>Por qué quedó en fases y no en semanas</h3>
+<h2 id="fases">Por qué en fases y no en semanas</h2>
 
 <p>El cronograma original lo tenía semana a semana: dieciséis filas, una por cada semana del periodo. Para el plan de formación lo agrupé en seis fases, y vale la pena explicar por qué.</p>
 
 <p>La razón está en la columna de entregables. El formato pide un producto por fila, y hay semanas que no generan uno propio: una semana de pruebas no produce un documento por sí sola, el entregable aparece al final de las tres que van juntas. Con dieciséis filas habría tenido que inventarme un producto para cada una, y cada invento es algo que después me pueden reclamar.</p>
 
+<blockquote>
+  <p>Prometer menos de lo que uno puede entregar no es falta de ambición. Es la única forma de que el documento siga siendo cierto en diciembre.</p>
+</blockquote>
+
 <p>Agrupado en fases, cada entregable existe de verdad y se puede verificar. Eso además deja ver el orden del proyecto: la solución técnica no aparece hasta la cuarta fila, y es intencional. Primero hay que entender el mercado y escoger; construir viene después.</p>
 
-<h2 id="pertinencia"><span class="num">Tercera parte</span>Por qué este producto, y con qué respaldo</h2>
+<h2 id="obliga">Lo que el formato obliga a decidir</h2>
 
-<h3>La decisión no fue por gusto</h3>
+<p>Llenar el plan me obligó a responder tres preguntas que había estado aplazando.</p>
 
-<p>Cuando empecé tenía una lista larga de cosas que NovaIA podía ofrecer: automatización de facturas, recordatorios de cobro, registro de ventas desde mensajes, control de inventario, reportes automáticos. Todas resolvían algo real, y esa era justamente la dificultad.</p>
+<p><strong>Qué entrego exactamente.</strong> No "avanzar en el sistema", sino un documento o un producto con nombre. La diferencia entre las dos redacciones es la diferencia entre poder demostrar que cumplí y tener que argumentarlo.</p>
 
-<p>Para escoger apliqué tres criterios:</p>
+<p><strong>En qué fecha.</strong> Con cien horas declaradas y hora y cuarto disponible por noche, las fechas no son una aspiración: son el resultado de una división. Cualquier fase que no quepa en ese cálculo está mal estimada.</p>
+
+<p><strong>Qué queda por fuera.</strong> Esta es la que más cuesta. Cada funcionalidad que no entró al plan es una que no voy a construir, por buena que parezca en noviembre. El plan no solo dice qué hacer: dice a qué voy a decir que no.</p>
+
+<nav class="postnav">
+  <a href="#v-1">← Una silla vacía cuesta plata</a>
+  <a href="#v-3">Nueve ideas, un producto →</a>
+</nav>
+
+</article>
+</div>
+
+<aside class="authorbox">
+  <div class="avatar" aria-hidden="true">AJ</div>
+  <div class="who">
+    <p class="name">Andrés Camilo Jaramillo Rodríguez</p>
+    <p class="bio">Estudiante de Ingeniería de Sistemas en UNIMINUTO. Escribe aquí el avance de su práctica profesional en modalidad de emprendimiento, donde desarrolla NovaIA, un proyecto de automatización para negocios pequeños en Medellín.</p>
+  </div>
+</aside>
+</div>
+</section>
+
+<section id="v-3" class="view">
+<nav class="sitebar">
+  <div class="sitebar-inner">
+    <a href="#v-home"><span class="brand">Nova<em>IA</em></span></a>
+    <span class="sep">·</span>
+    <span class="blogname">Bitácora de práctica profesional</span>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Entrada 3 de 3 · Semanas 7 y 8</p>
+  <h1>Nueve ideas, un producto</h1>
+  <p class="dek">Cómo escogí qué construir entre varias opciones, y qué respaldo institucional sostiene el proyecto.</p>
+  <div class="meta-strip">
+    <span class="author">Andrés Camilo Jaramillo Rodríguez</span>
+    <span>17 de octubre de 2026</span>
+    <span>7 min de lectura</span>
+    <span>Ingeniería de Sistemas, <a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
+  </div>
+  <ul class="tags">
+    <li>Decisión</li>
+    <li>Pertinencia</li>
+    <li>Aval</li>
+  </ul>
+</header>
+
+<div class="layout">
+<aside class="side">
+  <p class="label">En esta entrada</p>
+  <ol>
+    <li><a href="#alternativas">Las alternativas que tenía</a></li>
+    <li><a href="#criterios">Los tres criterios</a></li>
+    <li><a href="#segmento">Por qué ese segmento</a></li>
+    <li><a href="#aval">El aval</a></li>
+    <li><a href="#cierre">Qué me deja formalizar</a></li>
+  </ol>
+  <div class="alt">
+  <p class="label">Las tres entradas</p>
+  <ul>
+    <li><a href="#v-1">Una silla vacía cuesta plata</a></li>
+    <li><a href="#v-2">Poner fecha a lo que falta</a></li>
+    <li><span class="cur">Nueve ideas, un producto</span></li>
+  </ul>
+  </div>
+</aside>
+
+<article>
+
+<p class="lead">La parte difícil de un emprendimiento no es encontrar un problema que resolver. Es que hay demasiados, todos reales, y hay que escoger uno con el tiempo y los recursos que uno tiene.</p>
+
+<p>Esta entrada cuenta cómo llegué al producto que estoy construyendo, por qué sostengo que responde al problema que identifiqué, y qué respaldo institucional tiene el proyecto.</p>
+
+<h2 id="alternativas">Las alternativas que tenía</h2>
+
+<p>Del análisis del mercado salieron nueve alternativas de automatización para negocios pequeños: facturas, registro de ventas desde mensajes, agendamiento, recordatorios, cotizaciones, reportes periódicos, inventario, clasificación de mensajes y onboarding de clientes.</p>
+
+<p>Todas resolvían algo real, y esa era justamente la dificultad. Escoger por gusto habría sido lo fácil; el problema es que después hay que sustentar la elección.</p>
+
+<figure>
+<div class="scroller">
+<svg viewBox="0 0 760 364" role="img" aria-label="Embudo de selección: de nueve alternativas se preseleccionaron tres y se integraron en un solo ciclo de servicio.">
+  <defs>
+    <marker id="fn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-soft)"/>
+    </marker>
+  </defs>
+  <text x="16" y="34" class="m" font-size="9.5" letter-spacing="1.4" fill="var(--ink-soft)">NUEVE ALTERNATIVAS</text>
+  <text x="286" y="34" class="m" font-size="9.5" letter-spacing="1.4" fill="var(--ink-soft)">TRES PRESELECCIONADAS</text>
+  <text x="552" y="34" class="m" font-size="9.5" letter-spacing="1.4" fill="var(--accent)">UN SOLO CICLO</text>
+  <rect x="16" y="62" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="114" y="79" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Facturas</text>
+  <rect x="16" y="93" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="110" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Ventas por mensaje</text>
+  <rect x="16" y="124" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="114" y="141" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Agendamiento</text>
+  <rect x="16" y="155" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="114" y="172" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Recordatorios</text>
+  <rect x="16" y="186" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="203" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Cotizaciones</text>
+  <rect x="16" y="217" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="234" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Reportes</text>
+  <rect x="16" y="248" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="265" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Inventario</text>
+  <rect x="16" y="279" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="296" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Clasificación</text>
+  <rect x="16" y="310" width="196" height="26" rx="3" fill="var(--surface-2)" stroke="var(--line)"/><text x="114" y="327" text-anchor="middle" class="d" font-size="11" fill="var(--ink-soft)">Onboarding</text>
+  <path d="M224 170 H276" stroke="var(--ink-soft)" stroke-width="1.5" fill="none" marker-end="url(#fn)"/>
+  <path d="M490 170 H542" stroke="var(--ink-soft)" stroke-width="1.5" fill="none" marker-end="url(#fn)"/>
+  <rect x="286" y="108" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="384" y="125" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Agendamiento</text>
+  <rect x="286" y="157" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="384" y="174" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Recordatorios</text>
+  <rect x="286" y="206" width="196" height="26" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="384" y="223" text-anchor="middle" class="d" font-size="11" fill="var(--ink)">Facturación</text>
+  <text x="384" y="258" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">no eran tres productos:</text>
+  <text x="384" y="271" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">eran etapas del mismo proceso</text>
+  <rect x="552" y="96" width="192" height="148" rx="3" fill="var(--accent)"/>
+  <text x="648" y="126" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--on-accent)">Agendar</text>
+  <text x="648" y="154" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--on-accent)">Recordar</text>
+  <text x="648" y="182" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--on-accent)">Atender</text>
+  <text x="648" y="210" text-anchor="middle" class="d" font-size="12.5" font-weight="700" fill="var(--on-accent)">Comprobar</text>
+  <path d="M600 134 H696 M600 162 H696 M600 190 H696" stroke="var(--on-accent)" stroke-opacity="0.3" fill="none"/>
+</svg>
+</div>
+<figcaption><b>De nueve alternativas a una solución.</b> Las tres preseleccionadas resultaron ser etapas del mismo proceso, no productos independientes.</figcaption>
+</figure>
+
+<h2 id="criterios">Los tres criterios</h2>
 
 <div class="criteria">
   <h4>Criterios de selección</h4>
@@ -932,13 +1074,21 @@ img{max-width:100%}
 
 <p>El agendamiento pasa los tres. El análisis de datos, que era la opción más llamativa desde lo técnico, falla el tercero: casi ningún dueño de barbería siente que le falte analítica, aunque le sirva.</p>
 
+<p>El hallazgo que cambió el proyecto vino después. Al mirar juntas las tres alternativas que había preseleccionado —agendar, recordar y facturar— me di cuenta de que no eran tres productos distintos sino cuatro etapas del mismo proceso: el cliente reserva, el sistema recuerda, el negocio atiende y queda el comprobante. Construir una sola cosa que cubriera el ciclo completo era más útil que tres herramientas sueltas, y además más fácil de explicar.</p>
+
 <blockquote>
   <p>Entrar por donde duele hoy es lo que hace que el cliente pruebe. Lo demás llega después, cuando ya hay confianza y el sistema lleva meses acumulando datos.</p>
 </blockquote>
 
-<p>El segmento se escogió con la misma lógica. Barberías y salones de una a cinco sillas agendan todo el día, casi ninguno usa software, y una silla vacía es una pérdida que el dueño puede calcular en el momento. Laureles-Estadio y Envigado tienen suficiente densidad de estos negocios como para validar la idea sin salir de dos zonas que puedo recorrer caminando.</p>
+<h2 id="segmento">Por qué ese segmento</h2>
 
-<h3>El aval</h3>
+<p>El segmento se escogió con la misma lógica. Barberías y salones de una a cinco sillas agendan todo el día, casi ninguno usa software, y una silla vacía es una pérdida que el dueño puede calcular en el momento.</p>
+
+<p>Laureles-Estadio y Envigado tienen suficiente densidad de estos negocios como para validar la idea sin salir de dos zonas que puedo recorrer caminando. Eso no es un detalle menor cuando el tiempo disponible son setenta horas: un segmento que exija desplazamientos largos consume en transporte lo que debería irse en construir.</p>
+
+<p>Acotar así no reduce el alcance de NovaIA como empresa. Define por dónde entrar, no hasta dónde puede llegar.</p>
+
+<h2 id="aval">El aval</h2>
 
 <p>Un emprendimiento dentro de la práctica profesional no se sostiene con la convicción de quien lo propone. Tiene que estar respaldado institucionalmente, y ese respaldo se construyó en tres momentos.</p>
 
@@ -959,13 +1109,18 @@ img{max-width:100%}
 </div>
 <p class="cap"><b>Condiciones formalizadas ante Centro Progresa.</b> Las horas no son una estimación: están declaradas, y con ellas se mide el cumplimiento.</p>
 
-<h2 id="cierre"><span class="num">Cierre</span>Qué me deja formalizar</h2>
+<h2 id="cierre">Qué me deja formalizar</h2>
 
 <p>Cuando empezó la semana pensaba que formalizar era papeleo: llenar un formato, firmar, radicar.</p>
 
-<p>Lo que encontré fue otra cosa. El formato me obligó a responder preguntas que había estado aplazando. Qué entrego exactamente. En qué fecha. Cómo se verifica que lo hice.</p>
+<p>Lo que encontré fue otra cosa. El formato me obligó a responder preguntas que había estado aplazando, y la elección del producto dejó de ser una preferencia para convertirse en algo que puedo sustentar con criterios.</p>
 
 <p>Mientras la idea vive en la cabeza siempre cabe una función más. Escrita, y con una fecha al lado, deja de caber. Con cien horas contadas y un trabajo de tiempo completo, eso me sirve más de lo que me limita.</p>
+
+<nav class="postnav">
+  <a href="#v-2">← Poner fecha a lo que falta</a>
+  <a href="#v-home">Volver a la portada →</a>
+</nav>
 
 </article>
 </div>
@@ -978,5 +1133,27 @@ img{max-width:100%}
   </div>
 </aside>
 </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  var vistas = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  if (!vistas.length) return;
+  function mostrar(id) {
+    var hay = vistas.some(function (v) { return v.id === id; });
+    vistas.forEach(function (v, i) { v.hidden = hay ? v.id !== id : i !== 0; });
+    window.scrollTo(0, 0);
+  }
+  function desdeHash() {
+    var h = (location.hash || '').replace('#', '');
+    if (h && h.indexOf('v-') !== 0) return;   /* ancla interna: no cambia de vista */
+    mostrar(h || 'v-home');
+  }
+  window.addEventListener('hashchange', desdeHash);
+  desdeHash();
+})();
+</script>
 </body>
 </html>
