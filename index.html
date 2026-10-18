@@ -10,48 +10,21 @@
 <style>
 /* Layout: artículo de una columna (~64ch) dentro de un marco de 920px; las figuras ocupan el marco completo. */
 :root{
-  --paper:#EBEEF1;
+  color-scheme:light;
+  --paper:#FFFFFF;
   --surface:#FFFFFF;
-  --surface-2:#F3F6F8;
+  --surface-2:#F4F6F8;
   --ink:#14202A;
   --ink-soft:#4E5E6A;
-  --line:#CCD6DC;
+  --line:#C9D4DB;
   --accent:#0B6B74;
-  --accent-soft:#D9E9EA;
+  --accent-soft:#DCEAEB;
   --on-accent:#FFFFFF;
   --mark:#A8352F;
   --font-display:'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-body:'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-mono:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  --measure:36rem;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#0E161C;
-    --surface:#16222A;
-    --surface-2:#1C2A33;
-    --ink:#E2EAEE;
-    --ink-soft:#9AADB8;
-    --line:#2B3B46;
-    --accent:#4FB4BE;
-    --accent-soft:#16333A;
-    --on-accent:#0B151A;
-    --mark:#E38177;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0E161C;
-  --surface:#16222A;
-  --surface-2:#1C2A33;
-  --ink:#E2EAEE;
-  --ink-soft:#9AADB8;
-  --line:#2B3B46;
-  --accent:#4FB4BE;
-  --accent-soft:#16333A;
-  --on-accent:#0B151A;
-  --mark:#E38177;
-  color-scheme: dark;
+  --measure:38rem;
 }
 
 *{box-sizing:border-box}
@@ -64,7 +37,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .wrap{
-  max-width:920px;
+  max-width:1280px;
   margin-inline:auto;
   padding-left:max(16px, env(safe-area-inset-left, 0px));
   padding-right:max(16px, env(safe-area-inset-right, 0px));
@@ -72,13 +45,17 @@ body{
 }
 
 /* ---- Barra del sitio ---- */
-.sitebar{
+.sitebar{border-bottom:1px solid var(--line)}
+.sitebar-inner{
   display:flex;
   align-items:baseline;
   flex-wrap:wrap;
   gap:.5rem;
-  padding-block:.95rem;
-  border-bottom:1px solid var(--line);
+  max-width:1280px;
+  margin-inline:auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:1rem;
 }
 .sitebar .brand{
   font-family:var(--font-display);
@@ -137,12 +114,9 @@ body{
 
 /* ---- Índice ---- */
 .toc{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding-block:1.1rem;
-  margin-block:0 2.75rem;
-  max-width:var(--measure);
-  margin-inline:auto;
+  border-left:2px solid var(--line);
+  padding:.2rem 0 .2rem 1.15rem;
+  margin:0;
 }
 .toc .label{
   font-family:var(--font-mono);
@@ -169,7 +143,7 @@ body{
   padding:1.3rem;
   margin-block:3.25rem 0;
   max-width:var(--measure);
-  margin-inline:auto;
+  margin-inline:0;
 }
 .authorbox .avatar{
   flex:0 0 auto;
@@ -227,12 +201,22 @@ h1{
 .byline strong{color:var(--ink);font-weight:500}
 
 /* ---- Cuerpo ---- */
+article{min-width:0}
 article > *{
   max-width:var(--measure);
-  margin-inline:auto;
+  margin-inline:0;
 }
 article > figure,
 article > .scroller{max-width:100%}
+
+/* ---- Rejilla de dos columnas ---- */
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:0 3.5rem;
+}
+.layout > article{grid-column:1;grid-row:1}
+.layout > .toc{grid-column:2;grid-row:1;position:sticky;top:1.5rem;align-self:start}
 
 p{margin-block:0 1.15rem}
 .lead{
@@ -357,6 +341,7 @@ figure{margin-block:2.25rem .6rem}
   border:1px solid var(--line);
   background:var(--surface);
   margin-block:2.25rem .6rem;
+  max-width:100%;
 }
 figure > .scroller{margin:0}
 .scroller > svg{display:block;min-width:620px;width:100%;height:auto}
@@ -371,7 +356,7 @@ figcaption, .cap{
   color:var(--ink-soft);
   margin-top:.7rem;
   max-width:var(--measure);
-  margin-inline:auto;
+  margin-inline:0;
 }
 figcaption b, .cap b{color:var(--ink);font-weight:500}
 
@@ -475,6 +460,19 @@ tbody tr:last-child td{border-bottom:none}
 }
 .endnote a{display:inline-block}
 
+@media (max-width:1040px){
+  .layout{grid-template-columns:1fr;gap:0}
+  .layout > .toc{
+    grid-column:1;grid-row:1;position:static;
+    border-left:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:1.1rem 0;
+    margin-block:0 2.75rem;
+    max-width:var(--measure);
+  }
+  .layout > article{grid-column:1;grid-row:2}
+}
 @media (max-width:880px){
   .steps{grid-template-columns:1fr}
 }
@@ -494,18 +492,20 @@ tbody tr:last-child td{border-bottom:none}
 </style>
 <style>
 html{color-scheme:light}
-body{margin:0}
+body{margin:0;background:#FFFFFF}
 img{max-width:100%}
 </style>
 </head>
 <body>
-<div class="wrap">
-
 <nav class="sitebar">
-  <span class="brand">Nova<em>IA</em></span>
-  <span class="sep">·</span>
-  <span class="blogname">Bitácora de práctica profesional</span>
+  <div class="sitebar-inner">
+    <span class="brand">Nova<em>IA</em></span>
+    <span class="sep">·</span>
+    <span class="blogname">Bitácora de práctica profesional</span>
+  </div>
 </nav>
+
+<div class="wrap">
 
 <header class="masthead">
   <p class="kicker">Semanas 7 y 8 · Formalización</p>
@@ -588,7 +588,8 @@ img{max-width:100%}
 <figcaption>Los tres documentos de los que habla esta entrada: el plan de formación, el calendario de fases y el producto que sustentan.</figcaption>
 </figure>
 
-<nav class="toc">
+<div class="layout">
+<aside class="toc">
   <p class="label">En esta entrada</p>
   <ol>
     <li><a href="#producto">El producto que estoy ofreciendo</a></li>
@@ -596,7 +597,7 @@ img{max-width:100%}
     <li><a href="#pertinencia">Por qué este producto, y con qué respaldo</a></li>
     <li><a href="#cierre">Qué me deja formalizar</a></li>
   </ol>
-</nav>
+</aside>
 
 <article>
 
@@ -967,6 +968,7 @@ img{max-width:100%}
 <p>Mientras la idea vive en la cabeza siempre cabe una función más. Escrita, y con una fecha al lado, deja de caber. Con cien horas contadas y un trabajo de tiempo completo, eso me sirve más de lo que me limita.</p>
 
 </article>
+</div>
 
 <aside class="authorbox">
   <div class="avatar" aria-hidden="true">AJ</div>
