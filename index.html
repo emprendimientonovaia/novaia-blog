@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Formalizar el emprendimiento NovaIA: el producto, el plan de formación y el aval institucional. Práctica profesional en modalidad de emprendimiento.">
+<title>Formalizar NovaIA</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: artículo de una columna (~64ch) dentro de un marco de 920px; las figuras ocupan el marco completo. */
+:root{
+  --paper:#EBEEF1;
+  --surface:#FFFFFF;
+  --surface-2:#F3F6F8;
+  --ink:#14202A;
+  --ink-soft:#4E5E6A;
+  --line:#CCD6DC;
+  --accent:#0B6B74;
+  --accent-soft:#D9E9EA;
+  --on-accent:#FFFFFF;
+  --mark:#A8352F;
+  --font-display:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --measure:36rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E161C;
+    --surface:#16222A;
+    --surface-2:#1C2A33;
+    --ink:#E2EAEE;
+    --ink-soft:#9AADB8;
+    --line:#2B3B46;
+    --accent:#4FB4BE;
+    --accent-soft:#16333A;
+    --on-accent:#0B151A;
+    --mark:#E38177;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E161C;
+  --surface:#16222A;
+  --surface-2:#1C2A33;
+  --ink:#E2EAEE;
+  --ink-soft:#9AADB8;
+  --line:#2B3B46;
+  --accent:#4FB4BE;
+  --accent-soft:#16333A;
+  --on-accent:#0B151A;
+  --mark:#E38177;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:920px;
+  margin-inline:auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0 4rem;
+}
+
+/* ---- Barra del sitio ---- */
+.sitebar{
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:.5rem;
+  padding-block:.95rem;
+  border-bottom:1px solid var(--line);
+}
+.sitebar .brand{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.0625rem;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.sitebar .brand em{font-style:normal;color:var(--accent)}
+.sitebar .sep{color:var(--line)}
+.sitebar .blogname{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  color:var(--ink-soft);
+}
+
+/* ---- Cabecera ---- */
+.masthead{
+  border-bottom:2px solid var(--ink);
+  padding-block:2rem 1.5rem;
+  margin-bottom:2rem;
+}
+.meta-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem .85rem;
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  color:var(--ink-soft);
+  margin:0 0 1.1rem;
+}
+.meta-strip .author{color:var(--ink);font-weight:500}
+.meta-strip span:not(:first-child){padding-left:.85rem;border-left:1px solid var(--line)}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.tags li{
+  padding:.22rem .7rem;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  border-radius:999px;
+  margin:0;
+}
+.tags li::before{display:none}
+
+/* ---- Portada ---- */
+.cover{margin-block:0 2.25rem;max-width:100%}
+.cover svg{display:block;width:100%;height:auto;border:1px solid var(--line)}
+
+/* ---- Índice ---- */
+.toc{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding-block:1.1rem;
+  margin-block:0 2.75rem;
+  max-width:var(--measure);
+  margin-inline:auto;
+}
+.toc .label{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 .75rem;
+}
+.toc ol{margin:0;padding-left:1.15rem;font-family:var(--font-display);font-size:.9375rem}
+.toc li{margin-bottom:.4rem}
+.toc li:last-child{margin-bottom:0}
+.toc li::marker{font-family:var(--font-mono);font-size:.78em;color:var(--accent)}
+.toc a{text-decoration:none;font-weight:500}
+.toc a:hover{text-decoration:underline}
+
+/* ---- Bloque de autor ---- */
+.authorbox{
+  display:flex;
+  gap:1.1rem;
+  align-items:flex-start;
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:1.3rem;
+  margin-block:3.25rem 0;
+  max-width:var(--measure);
+  margin-inline:auto;
+}
+.authorbox .avatar{
+  flex:0 0 auto;
+  width:3.25rem;
+  height:3.25rem;
+  display:grid;
+  place-items:center;
+  background:var(--accent);
+  color:var(--on-accent);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.05rem;
+  border-radius:50%;
+}
+.authorbox .who{min-width:0}
+.authorbox .name{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1rem;
+  margin-block:0 .3rem;
+}
+.authorbox .bio{font-size:.9375rem;line-height:1.55;color:var(--ink-soft);margin-block:0}
+.kicker{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 1.25rem;
+}
+h1{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(2rem, 6vw, 3.1rem);
+  line-height:1.04;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+  margin:0 0 .75rem;
+  max-width:16ch;
+}
+.dek{
+  font-size:1.1875rem;
+  color:var(--ink-soft);
+  margin:0 0 1.5rem;
+  max-width:52ch;
+  text-wrap:balance;
+}
+.byline{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  color:var(--ink-soft);
+  line-height:1.8;
+  margin:0;
+}
+.byline strong{color:var(--ink);font-weight:500}
+
+/* ---- Cuerpo ---- */
+article > *{
+  max-width:var(--measure);
+  margin-inline:auto;
+}
+article > figure,
+article > .scroller{max-width:100%}
+
+p{margin-block:0 1.15rem}
+.lead{
+  font-size:1.25rem;
+  line-height:1.55;
+  color:var(--ink);
+}
+.lead::first-letter{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:3.2rem;
+  line-height:.8;
+  float:left;
+  padding:.1em .12em 0 0;
+  color:var(--accent);
+}
+
+h2{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.75rem;
+  line-height:1.15;
+  letter-spacing:-.018em;
+  text-wrap:balance;
+  margin-block:3.25rem .4rem;
+  padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  scroll-margin-top:1rem;
+}
+h2 .num{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.5rem;
+}
+h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.1875rem;
+  letter-spacing:-.01em;
+  margin-block:2.25rem .55rem;
+}
+a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:.07em}
+a:hover{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+strong{font-weight:600}
+
+ul{margin-block:0 1.15rem;padding-left:0;list-style:none}
+ul li{
+  position:relative;
+  padding-left:1.4rem;
+  margin-bottom:.6rem;
+}
+ul li::before{
+  content:"";
+  position:absolute;
+  left:.25rem;
+  top:.72em;
+  width:.4rem;
+  height:.4rem;
+  background:var(--accent);
+}
+
+blockquote{
+  margin-block:2rem;
+  padding:0 0 0 1.25rem;
+  border-left:3px solid var(--mark);
+  font-size:1.125rem;
+  color:var(--ink-soft);
+}
+blockquote p:last-child{margin-bottom:0}
+
+/* ---- Pasos del flujo ---- */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-block:2rem .6rem;
+  max-width:100%;
+}
+.step{
+  background:var(--surface);
+  padding:1.1rem 1rem 1.25rem;
+  min-width:0;
+}
+.step .n{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  font-weight:500;
+  color:var(--on-accent);
+  background:var(--accent);
+  width:1.45rem;
+  height:1.45rem;
+  display:grid;
+  place-items:center;
+  margin-bottom:.7rem;
+}
+.step h4{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.9375rem;
+  margin:0 0 .3rem;
+  letter-spacing:-.005em;
+}
+.step p{
+  font-size:.875rem;
+  line-height:1.5;
+  color:var(--ink-soft);
+  margin:0;
+}
+
+/* ---- Figuras ---- */
+figure{margin-block:2.25rem .6rem}
+.scroller{
+  overflow-x:auto;
+  border:1px solid var(--line);
+  background:var(--surface);
+  margin-block:2.25rem .6rem;
+}
+figure > .scroller{margin:0}
+.scroller > svg{display:block;min-width:620px;width:100%;height:auto}
+svg text{font-family:var(--font-body)}
+svg text.m{font-family:var(--font-mono)}
+svg text.d{font-family:var(--font-display)}
+svg text.b{font-family:var(--font-body)}
+figcaption, .cap{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-top:.7rem;
+  max-width:var(--measure);
+  margin-inline:auto;
+}
+figcaption b, .cap b{color:var(--ink);font-weight:500}
+
+/* ---- Tabla del plan ---- */
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:700px;
+  font-size:.8125rem;
+  font-family:var(--font-display);
+  font-weight:500;
+}
+caption{display:none}
+th{
+  text-align:left;
+  font-family:var(--font-mono);
+  font-weight:500;
+  font-size:.6875rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  padding:.8rem .9rem;
+  border-bottom:1px solid var(--ink);
+  background:var(--surface-2);
+}
+td{
+  padding:.85rem .9rem;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  line-height:1.45;
+}
+td:first-child{color:var(--ink);font-weight:600}
+td.desc{color:var(--ink-soft);font-weight:400}
+td.fecha{
+  font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+  color:var(--accent);
+}
+tbody tr:last-child td{border-bottom:none}
+
+/* ---- Caja de criterios ---- */
+.criteria{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  padding:1.3rem 1.4rem;
+  margin-block:2rem;
+}
+.criteria h4{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 .9rem;
+  font-weight:500;
+}
+.criteria ol{margin:0;padding-left:1.1rem}
+.criteria li{margin-bottom:.7rem;font-size:.9375rem;line-height:1.55}
+.criteria li:last-child{margin-bottom:0}
+.criteria li::marker{font-family:var(--font-mono);color:var(--accent);font-size:.8em}
+
+/* ---- Datos del aval ---- */
+.facts{
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-block:2rem .6rem;
+  max-width:100%;
+}
+.facts div{background:var(--surface);padding:1rem;min-width:0}
+.facts dt{
+  font-family:var(--font-mono);
+  font-size:.625rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-bottom:.4rem;
+}
+.facts dd{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1rem;
+  font-variant-numeric:tabular-nums;
+  line-height:1.3;
+}
+
+/* ---- Cierre ---- */
+.endnote{
+  margin-top:3.5rem;
+  padding-top:1.5rem;
+  border-top:2px solid var(--ink);
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  line-height:1.8;
+  color:var(--ink-soft);
+}
+.endnote a{display:inline-block}
+
+@media (max-width:880px){
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .facts{grid-template-columns:1fr}
+  .facts div{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+  .facts dt{margin-bottom:0}
+}
+@media (max-width:520px){
+  body{font-size:1rem}
+  .lead{font-size:1.125rem}
+  h2{font-size:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+<style>
+html{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="sitebar">
+  <span class="brand">Nova<em>IA</em></span>
+  <span class="sep">·</span>
+  <span class="blogname">Bitácora de práctica profesional</span>
+</nav>
+
+<header class="masthead">
+  <p class="kicker">Semanas 7 y 8 · Formalización</p>
+  <h1>Cuando la idea se vuelve compromiso</h1>
+  <p class="dek">Formalizar el emprendimiento: el producto que estoy construyendo, el plan de formación que radiqué y el respaldo que lo sostiene.</p>
+  <div class="meta-strip">
+    <span class="author">Andrés Camilo Jaramillo Rodríguez</span>
+    <span>17 de octubre de 2026</span>
+    <span>9 min de lectura</span>
+    <span>Ingeniería de Sistemas, <a href="https://www.uniminuto.edu" target="_blank" rel="noopener">UNIMINUTO</a></span>
+  </div>
+  <ul class="tags">
+    <li>Emprendimiento</li>
+    <li>Práctica profesional</li>
+    <li>Formalización</li>
+    <li>NovaIA</li>
+  </ul>
+</header>
+
+<figure class="cover">
+<svg viewBox="0 0 920 340" role="img" aria-label="Portada: tres documentos superpuestos que representan la tabla del plan de formación, la línea de tiempo de las fases y la pantalla de reserva, junto a un sello de aprobación.">
+  <rect width="920" height="340" fill="var(--accent-soft)"/>
+  <path d="M0 300 H920 M0 40 H920" stroke="var(--accent)" stroke-opacity="0.18" fill="none"/>
+
+  <g transform="rotate(-5 235 180)">
+    <rect x="110" y="85" width="250" height="190" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="124" y="99" width="222" height="13" fill="var(--accent)" fill-opacity="0.3"/>
+    <g fill="var(--ink-soft)" fill-opacity="0.32">
+      <rect x="124" y="128" width="86" height="7"/><rect x="124" y="141" width="62" height="7"/>
+      <rect x="124" y="164" width="86" height="7"/><rect x="124" y="177" width="70" height="7"/>
+      <rect x="124" y="200" width="86" height="7"/><rect x="124" y="213" width="54" height="7"/>
+      <rect x="124" y="236" width="86" height="7"/><rect x="124" y="249" width="66" height="7"/>
+    </g>
+    <g fill="var(--accent)">
+      <rect x="296" y="128" width="50" height="7"/>
+      <rect x="296" y="164" width="50" height="7"/>
+      <rect x="296" y="200" width="50" height="7"/>
+      <rect x="296" y="236" width="50" height="7"/>
+    </g>
+    <path d="M124 155 H346 M124 191 H346 M124 227 H346" stroke="var(--line)" fill="none"/>
+  </g>
+
+  <g transform="rotate(2.5 460 165)">
+    <rect x="335" y="60" width="250" height="210" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <g fill="var(--ink-soft)" fill-opacity="0.3">
+      <rect x="349" y="88" width="50" height="6"/><rect x="349" y="118" width="50" height="6"/>
+      <rect x="349" y="148" width="50" height="6"/><rect x="349" y="178" width="50" height="6"/>
+      <rect x="349" y="208" width="50" height="6"/><rect x="349" y="238" width="50" height="6"/>
+    </g>
+    <rect x="411" y="84" width="54" height="13" rx="2" fill="var(--accent)" fill-opacity="0.35"/>
+    <rect x="432" y="114" width="42" height="13" rx="2" fill="var(--accent)" fill-opacity="0.35"/>
+    <rect x="453" y="144" width="42" height="13" rx="2" fill="var(--accent)" fill-opacity="0.35"/>
+    <rect x="474" y="174" width="22" height="13" rx="2" fill="var(--accent)" fill-opacity="0.35"/>
+    <rect x="490" y="204" width="68" height="13" rx="2" fill="var(--accent)"/>
+    <rect x="531" y="234" width="40" height="13" rx="2" fill="var(--accent)"/>
+    <path d="M405 72 V258" stroke="var(--line)" fill="none"/>
+  </g>
+
+  <g transform="rotate(-3 690 180)">
+    <rect x="555" y="85" width="270" height="190" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="573" y="101" width="118" height="12" fill="var(--ink-soft)" fill-opacity="0.4"/>
+    <rect x="573" y="120" width="76" height="6" fill="var(--ink-soft)" fill-opacity="0.22"/>
+    <rect x="573" y="140" width="72" height="26" rx="3" fill="var(--accent)" fill-opacity="0.18" stroke="var(--accent)"/>
+    <rect x="654" y="140" width="72" height="26" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="735" y="140" width="72" height="26" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="573" y="178" width="52" height="30" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="633" y="178" width="52" height="30" rx="3" fill="var(--accent)"/>
+    <rect x="694" y="178" width="52" height="30" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="755" y="178" width="52" height="30" rx="3" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="573" y="220" width="52" height="16" rx="2" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="633" y="220" width="52" height="16" rx="2" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="694" y="220" width="52" height="16" rx="2" fill="var(--accent)" fill-opacity="0.45"/>
+    <rect x="755" y="220" width="52" height="16" rx="2" fill="var(--surface)" stroke="var(--line)"/>
+    <rect x="573" y="246" width="96" height="18" rx="3" fill="var(--accent)"/>
+  </g>
+
+  <circle cx="846" cy="62" r="33" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.5"/>
+  <path d="M831 62 l10 11 l20 -23" stroke="var(--accent)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<figcaption>Los tres documentos de los que habla esta entrada: el plan de formación, el calendario de fases y el producto que sustentan.</figcaption>
+</figure>
+
+<nav class="toc">
+  <p class="label">En esta entrada</p>
+  <ol>
+    <li><a href="#producto">El producto que estoy ofreciendo</a></li>
+    <li><a href="#plan">El plan de formación</a></li>
+    <li><a href="#pertinencia">Por qué este producto, y con qué respaldo</a></li>
+    <li><a href="#cierre">Qué me deja formalizar</a></li>
+  </ol>
+</nav>
+
+<article>
+
+<p class="lead">Llevo siete semanas de práctica profesional en modalidad de emprendimiento. Las primeras fueron de investigación: entender el sector, mirar qué problemas se repiten en los negocios pequeños, decidir a quién le iba a vender. Trabajo cómodo, porque todo seguía siendo reversible.</p>
+
+<p>Esta semana el tema fue otro. Tocó formalizar: escribir qué voy a entregar, en qué fecha y bajo qué respaldo institucional. Ahí la idea deja de ser flexible.</p>
+
+<p>Esta entrada cuenta tres cosas: qué es exactamente el producto que estoy construyendo, cómo quedó el plan de formación que radiqué, y por qué sostengo que esta solución responde al problema que identifiqué.</p>
+
+<h2 id="producto"><span class="num">Primera parte</span>El producto que estoy ofreciendo</h2>
+
+<p><strong>NovaIA – Soluciones Digitales Inteligentes</strong> es un emprendimiento dedicado a automatizar tareas repetitivas en negocios pequeños. La premisa es sencilla: la tecnología para resolver esos problemas ya existe y ya es barata, pero viene empaquetada para empresas grandes. Lo que falta es alguien que la acerque en un lenguaje que un dueño de negocio entienda y a un precio que pueda pagar.</p>
+
+<p>El primer producto es un sistema de agendamiento en línea.</p>
+
+<h3>A quién va dirigido</h3>
+
+<p>El mercado inicial son barberías y salones de belleza de una a cinco sillas, ubicados en Laureles-Estadio y Envigado.</p>
+
+<p>Aunque suenan como dos negocios distintos, la clasificación económica del país los agrupa en el mismo renglón: el <a href="https://dian-rut.com/codigo-ciiu/9602/" target="_blank" rel="noopener">código CIIU 9602</a> cubre tanto el afeitado y recorte de barba como el corte, el peinado, la tintura, la manicura y los demás tratamientos de belleza. Operan igual, agendan igual y pierden dinero por lo mismo.</p>
+
+<h3>Qué problema resuelve</h3>
+
+<p>Hoy la mayoría agenda por WhatsApp y anota en un cuaderno. Funciona mientras el negocio es pequeño. Cuando crece aparecen tres cosas: mensajes que no alcanzan a responder mientras están atendiendo, citas que se cruzan o se olvidan, y clientes que no llegan porque nadie les recordó.</p>
+
+<p>Cada una tiene un costo medible. Una silla vacía a las tres de la tarde no se recupera.</p>
+
+<h3>Cómo funciona</h3>
+
+<div class="steps">
+  <div class="step">
+    <div class="n">1</div>
+    <h4>Reserva</h4>
+    <p>El cliente abre el enlace del negocio, ve los horarios realmente libres y escoge. No instala nada ni crea una cuenta.</p>
+  </div>
+  <div class="step">
+    <div class="n">2</div>
+    <h4>Confirmación</h4>
+    <p>El sistema registra la cita y envía de inmediato un correo con el servicio, la fecha y la hora.</p>
+  </div>
+  <div class="step">
+    <div class="n">3</div>
+    <h4>Recordatorio</h4>
+    <p>El día anterior sale un aviso automático, sin que el dueño tenga que acordarse de mandarlo.</p>
+  </div>
+  <div class="step">
+    <div class="n">4</div>
+    <h4>Comprobante</h4>
+    <p>Terminado el servicio se genera un comprobante en PDF, se archiva por mes y se envía al cliente.</p>
+  </div>
+  <div class="step">
+    <div class="n">5</div>
+    <h4>Registro</h4>
+    <p>Todo queda guardado y el dueño lo consulta en un tablero: citas, horarios con más demanda e ingresos.</p>
+  </div>
+</div>
+<p class="cap"><b>Ciclo completo del servicio.</b> Entre el paso 1 y el paso 5 el propietario no tiene que escribir un solo mensaje.</p>
+
+<h3>Cómo se ve</h3>
+
+<figure>
+<div class="scroller">
+<svg viewBox="0 0 680 424" role="img" aria-label="Boceto de la pantalla de reserva: nombre del negocio, selección de servicio, selección de día, horarios disponibles y botón de confirmar.">
+  <rect x="0.5" y="0.5" width="679" height="423" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <path d="M0 30 H680" stroke="var(--line)" fill="none"/>
+  <rect x="0.5" y="0.5" width="679" height="29" rx="8" fill="var(--surface-2)" stroke="none"/>
+  <circle cx="18" cy="15" r="4" fill="var(--line)"/>
+  <circle cx="32" cy="15" r="4" fill="var(--line)"/>
+  <circle cx="46" cy="15" r="4" fill="var(--line)"/>
+  <rect x="66" y="8" width="230" height="15" rx="7.5" fill="var(--paper)"/>
+  <text x="76" y="19.5" class="m" font-size="9" fill="var(--ink-soft)">reservas.novaia.co/el-roble</text>
+
+  <text x="28" y="68" class="d" font-size="19" font-weight="700" fill="var(--ink)">Barbería El Roble</text>
+  <text x="28" y="86" class="b" font-size="12" fill="var(--ink-soft)">Laureles · Reserva tu cita en menos de un minuto</text>
+
+  <text x="28" y="118" class="m" font-size="9" letter-spacing="1.6" fill="var(--ink-soft)">SERVICIO</text>
+  <rect x="28" y="128" width="200" height="38" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <text x="42" y="146" class="d" font-size="12" font-weight="600" fill="var(--ink)">Corte clásico</text>
+  <text x="42" y="159" class="m" font-size="9.5" fill="var(--accent)">30 min · $28.000</text>
+  <rect x="240" y="128" width="200" height="38" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="254" y="146" class="d" font-size="12" font-weight="600" fill="var(--ink-soft)">Corte y barba</text>
+  <text x="254" y="159" class="m" font-size="9.5" fill="var(--ink-soft)">45 min · $40.000</text>
+  <rect x="452" y="128" width="200" height="38" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="466" y="146" class="d" font-size="12" font-weight="600" fill="var(--ink-soft)">Arreglo de barba</text>
+  <text x="466" y="159" class="m" font-size="9.5" fill="var(--ink-soft)">20 min · $18.000</text>
+
+  <text x="28" y="196" class="m" font-size="9" letter-spacing="1.6" fill="var(--ink-soft)">DÍA</text>
+  <rect x="28" y="206" width="117" height="44" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="86.5" y="224" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">LUN</text>
+  <text x="86.5" y="240" text-anchor="middle" class="d" font-size="14" font-weight="600" fill="var(--ink-soft)">19</text>
+  <rect x="155" y="206" width="117" height="44" rx="4" fill="var(--accent)" stroke="var(--accent)"/>
+  <text x="213.5" y="224" text-anchor="middle" class="m" font-size="9" fill="var(--on-accent)">MAR</text>
+  <text x="213.5" y="240" text-anchor="middle" class="d" font-size="14" font-weight="600" fill="var(--on-accent)">20</text>
+  <rect x="282" y="206" width="117" height="44" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="340.5" y="224" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">MIÉ</text>
+  <text x="340.5" y="240" text-anchor="middle" class="d" font-size="14" font-weight="600" fill="var(--ink-soft)">21</text>
+  <rect x="409" y="206" width="117" height="44" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="467.5" y="224" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">JUE</text>
+  <text x="467.5" y="240" text-anchor="middle" class="d" font-size="14" font-weight="600" fill="var(--ink-soft)">22</text>
+  <rect x="536" y="206" width="117" height="44" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="594.5" y="224" text-anchor="middle" class="m" font-size="9" fill="var(--ink-soft)">VIE</text>
+  <text x="594.5" y="240" text-anchor="middle" class="d" font-size="14" font-weight="600" fill="var(--ink-soft)">23</text>
+
+  <text x="28" y="280" class="m" font-size="9" letter-spacing="1.6" fill="var(--ink-soft)">HORARIOS DISPONIBLES</text>
+  <rect x="28" y="290" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="76" y="308" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">9:00</text>
+  <rect x="134" y="290" width="96" height="28" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-dasharray="3 3"/>
+  <text x="182" y="308" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink-soft)" opacity="0.5">9:40</text>
+  <rect x="240" y="290" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="288" y="308" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">10:20</text>
+  <rect x="346" y="290" width="96" height="28" rx="4" fill="var(--accent)" stroke="var(--accent)"/>
+  <text x="394" y="308" text-anchor="middle" class="m" font-size="10.5" font-weight="500" fill="var(--on-accent)">11:00</text>
+  <rect x="452" y="290" width="96" height="28" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-dasharray="3 3"/>
+  <text x="500" y="308" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink-soft)" opacity="0.5">11:40</text>
+  <rect x="558" y="290" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="606" y="308" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">12:20</text>
+
+  <rect x="28" y="326" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="76" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">2:00</text>
+  <rect x="134" y="326" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="182" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">2:40</text>
+  <rect x="240" y="326" width="96" height="28" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-dasharray="3 3"/>
+  <text x="288" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink-soft)" opacity="0.5">3:20</text>
+  <rect x="346" y="326" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="394" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">4:00</text>
+  <rect x="452" y="326" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="500" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">4:40</text>
+  <rect x="558" y="326" width="96" height="28" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="606" y="344" text-anchor="middle" class="m" font-size="10.5" fill="var(--ink)">5:20</text>
+
+  <rect x="28" y="370" width="186" height="36" rx="4" fill="var(--accent)"/>
+  <text x="121" y="392.5" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--on-accent)">Confirmar reserva</text>
+  <text x="228" y="392.5" class="b" font-size="11.5" fill="var(--ink-soft)">La confirmación le llega al correo en el momento.</text>
+</svg>
+</div>
+<figcaption><b>Boceto de la pantalla de reserva.</b> El negocio, los precios y la dirección son un ejemplo de demostración. Los horarios en línea punteada ya están ocupados: el cliente nunca ve una opción que no exista, que es lo que hoy produce los cruces de citas.</figcaption>
+</figure>
+
+<h3>Con qué está construido</h3>
+
+<div class="scroller">
+<svg viewBox="0 0 700 372" role="img" aria-label="Arquitectura del sistema: el navegador del cliente consulta la aplicación en Google Apps Script, que lee y escribe en una hoja de cálculo, archiva comprobantes en Drive y envía correos; Looker Studio lee la hoja para armar el tablero.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-soft)"/>
+    </marker>
+  </defs>
+  <g color="var(--ink-soft)">
+    <path d="M350 62 V90" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+    <path d="M350 154 V184 H120 V206" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+    <path d="M350 154 V206" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+    <path d="M350 154 V184 H580 V206" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+    <path d="M120 268 V300" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  </g>
+
+  <text x="358" y="80" class="m" font-size="9.5" fill="var(--ink-soft)">consulta y reserva</text>
+  <text x="358" y="176" class="m" font-size="9.5" fill="var(--ink-soft)">escribe</text>
+  <text x="128" y="290" class="m" font-size="9.5" fill="var(--ink-soft)">lee</text>
+
+  <rect x="262" y="18" width="176" height="44" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="350" y="45" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--ink)">Navegador del cliente</text>
+
+  <rect x="190" y="96" width="320" height="58" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <text x="350" y="120" text-anchor="middle" class="d" font-size="14" font-weight="700" fill="var(--ink)">Google Apps Script</text>
+  <text x="350" y="138" text-anchor="middle" class="m" font-size="10" fill="var(--accent)">página web + lógica de reservas</text>
+
+  <rect x="32" y="206" width="176" height="62" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="120" y="231" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--ink)">Hoja de cálculo</text>
+  <text x="120" y="248" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">citas, servicios</text>
+  <text x="120" y="260" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">y horarios</text>
+
+  <rect x="262" y="206" width="176" height="62" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="350" y="231" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--ink)">Drive</text>
+  <text x="350" y="248" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">comprobantes</text>
+  <text x="350" y="260" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">en PDF</text>
+
+  <rect x="492" y="206" width="176" height="62" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="580" y="231" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--ink)">Correo</text>
+  <text x="580" y="248" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">confirmaciones</text>
+  <text x="580" y="260" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">y recordatorios</text>
+
+  <rect x="32" y="300" width="176" height="52" rx="4" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="120" y="323" text-anchor="middle" class="d" font-size="13" font-weight="600" fill="var(--ink)">Looker Studio</text>
+  <text x="120" y="340" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">tablero del dueño</text>
+</svg>
+</div>
+<p class="cap"><b>Arquitectura del sistema.</b> No hay servidor propio: la aplicación vive dentro de <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">Apps Script</a> y el tablero se arma en <a href="https://lookerstudio.google.com" target="_blank" rel="noopener">Looker Studio</a> leyendo la misma hoja de cálculo donde quedan las citas.</p>
+
+<p>La decisión técnica más importante fue no pagar infraestructura. Todo el sistema corre sobre herramientas de uso gratuito, con límites diarios muy por encima de lo que mueve un negocio de este tamaño.</p>
+
+<p>No es una limitación. Es coherencia: un emprendimiento que promete soluciones accesibles para negocios pequeños no puede arrancar con una estructura de costos que lo obligue a cobrar caro.</p>
+
+<h2 id="plan"><span class="num">Segunda parte</span>El plan de formación</h2>
+
+<h3>Qué documentos formalizan esta práctica</h3>
+
+<p>Una práctica en modalidad de emprendimiento no se formaliza con un solo papel. Son cuatro documentos encadenados, y cada uno depende del anterior:</p>
+
+<ul>
+  <li><strong>La propuesta de práctica.</strong> Describe el emprendimiento, su objetivo y su justificación. Es la que Centro Progresa revisa y aprueba; sin ella no hay práctica.</li>
+  <li><strong>El formato de inscripción.</strong> Fija las condiciones: fecha de inicio y de terminación, días y horario de dedicación, y el total de horas. Es lo que vuelve medible el compromiso.</li>
+  <li><strong>El plan de formación.</strong> Traduce el proyecto en actividades con entregables y fechas. Es el instrumento sobre el cual la tutora hace el seguimiento.</li>
+  <li><strong>Los entregables de cada fase.</strong> Son la evidencia de que el plan se cumplió. Sin ellos el plan queda en intención.</li>
+</ul>
+
+<p>De los cuatro, el plan de formación es el único que escribo yo de principio a fin, y por eso es donde más se nota qué tan claro tengo el proyecto.</p>
+
+<h3>Cómo quedó diligenciado</h3>
+
+<p>El plan de formación es el documento donde queda escrito qué voy a entregar y cuándo. Lo diligencié en el formato institucional y lo organicé en seis fases.</p>
+
+<div class="scroller">
+<svg viewBox="0 0 760 300" role="img" aria-label="Línea de tiempo de las seis fases del plan de formación, del 24 de agosto al 13 de diciembre de 2026, con la fase de construcción como la más extensa.">
+  <path d="M240 34 V252 M273 34 V252 M398 34 V252 M526 34 V252 M650 34 V252" stroke="var(--line)" stroke-width="1" fill="none" stroke-dasharray="2 4"/>
+
+  <text x="228" y="60" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Entorno y mercado</text>
+  <rect x="240" y="48" width="75" height="18" rx="2" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="323" y="61" class="m" font-size="9.5" fill="var(--ink-soft)">11 sep</text>
+
+  <text x="228" y="94" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Segmentación</text>
+  <rect x="315" y="82" width="58" height="18" rx="2" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="381" y="95" class="m" font-size="9.5" fill="var(--ink-soft)">25 sep</text>
+
+  <text x="228" y="128" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Alcance y diagnóstico</text>
+  <rect x="373" y="116" width="58" height="18" rx="2" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="439" y="129" class="m" font-size="9.5" fill="var(--ink-soft)">9 oct</text>
+
+  <text x="228" y="162" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Diseño de la solución</text>
+  <rect x="431" y="150" width="29" height="18" rx="2" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="468" y="163" class="m" font-size="9.5" fill="var(--ink-soft)">16 oct</text>
+
+  <text x="228" y="196" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Construcción</text>
+  <rect x="460" y="184" width="145" height="18" rx="2" fill="var(--accent)"/>
+  <text x="613" y="197" class="m" font-size="9.5" fill="var(--ink-soft)">20 nov</text>
+
+  <text x="228" y="230" text-anchor="end" class="d" font-size="12" font-weight="600" fill="var(--ink)">Pruebas y cierre</text>
+  <rect x="605" y="218" width="87" height="18" rx="2" fill="var(--accent)"/>
+  <text x="700" y="231" class="m" font-size="9.5" fill="var(--ink-soft)">11 dic</text>
+
+  <path d="M240 258 H740" stroke="var(--ink-soft)" stroke-width="1" fill="none"/>
+  <text x="240" y="274" class="m" font-size="9.5" fill="var(--ink-soft)">24 ago</text>
+  <text x="273" y="288" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">sep</text>
+  <text x="398" y="288" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">oct</text>
+  <text x="526" y="288" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">nov</text>
+  <text x="650" y="288" text-anchor="middle" class="m" font-size="9.5" fill="var(--ink-soft)">dic</text>
+
+  <rect x="32" y="248" width="12" height="10" rx="2" fill="var(--accent-soft)" stroke="var(--accent)"/>
+  <text x="50" y="257" class="m" font-size="9" fill="var(--ink-soft)">análisis y diseño</text>
+  <rect x="32" y="268" width="12" height="10" rx="2" fill="var(--accent)"/>
+  <text x="50" y="277" class="m" font-size="9" fill="var(--ink-soft)">construcción y cierre</text>
+</svg>
+</div>
+<p class="cap"><b>Las seis fases sobre el calendario real.</b> Cuatro fases de análisis y diseño ocupan la primera mitad del periodo; la construcción del sistema es, con diferencia, la fase más larga.</p>
+
+<div class="scroller">
+<table>
+  <caption>Plan de formación de la práctica profesional</caption>
+  <thead>
+    <tr>
+      <th scope="col">Actividad</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Entregable</th>
+      <th scope="col">Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Análisis del entorno y del mercado</td>
+      <td class="desc">Estudio del sector de las pymes en Colombia, identificación de problemáticas comunes, tendencias del mercado y del entorno tecnológico.</td>
+      <td class="desc">Documento de análisis del entorno y tendencias del mercado</td>
+      <td class="fecha">11/09/2026</td>
+    </tr>
+    <tr>
+      <td>Segmentación de clientes y selección de la alternativa</td>
+      <td class="desc">Definición del perfil del cliente potencial, sus necesidades prioritarias y comparación de alternativas de solución para seleccionar la más viable.</td>
+      <td class="desc">Cuadro comparativo de mercado, segmentación y alternativas de solución</td>
+      <td class="fecha">25/09/2026</td>
+    </tr>
+    <tr>
+      <td>Definición del alcance y diagnóstico</td>
+      <td class="desc">Delimitación del alcance funcional del proyecto, selección de herramientas tecnológicas, levantamiento de requisitos y documentación del proceso actual.</td>
+      <td class="desc">Documento de alcance y requisitos del proyecto</td>
+      <td class="fecha">09/10/2026</td>
+    </tr>
+    <tr>
+      <td>Diseño de la solución</td>
+      <td class="desc">Definición de la arquitectura, el modelo de datos y el diseño de la interfaz del sistema de agendamiento.</td>
+      <td class="desc">Documento de diseño de la solución</td>
+      <td class="fecha">16/10/2026</td>
+    </tr>
+    <tr>
+      <td>Construcción del sistema</td>
+      <td class="desc">Desarrollo de la base de datos, la lógica de reservas, la interfaz web, las notificaciones automáticas, los comprobantes y el tablero de indicadores.</td>
+      <td class="desc">Sistema de agendamiento en funcionamiento</td>
+      <td class="fecha">20/11/2026</td>
+    </tr>
+    <tr>
+      <td>Pruebas, validación y cierre</td>
+      <td class="desc">Verificación del funcionamiento del sistema, corrección de errores, ajustes finales y elaboración del informe final de la práctica.</td>
+      <td class="desc">Informe final de la práctica y sistema validado</td>
+      <td class="fecha">11/12/2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="cap"><b>El plan tal como quedó radicado.</b> Seis filas, seis entregables verificables.</p>
+
+<h3>Por qué quedó en fases y no en semanas</h3>
+
+<p>El cronograma original lo tenía semana a semana: dieciséis filas, una por cada semana del periodo. Para el plan de formación lo agrupé en seis fases, y vale la pena explicar por qué.</p>
+
+<p>La razón está en la columna de entregables. El formato pide un producto por fila, y hay semanas que no generan uno propio: una semana de pruebas no produce un documento por sí sola, el entregable aparece al final de las tres que van juntas. Con dieciséis filas habría tenido que inventarme un producto para cada una, y cada invento es algo que después me pueden reclamar.</p>
+
+<p>Agrupado en fases, cada entregable existe de verdad y se puede verificar. Eso además deja ver el orden del proyecto: la solución técnica no aparece hasta la cuarta fila, y es intencional. Primero hay que entender el mercado y escoger; construir viene después.</p>
+
+<h2 id="pertinencia"><span class="num">Tercera parte</span>Por qué este producto, y con qué respaldo</h2>
+
+<h3>La decisión no fue por gusto</h3>
+
+<p>Cuando empecé tenía una lista larga de cosas que NovaIA podía ofrecer: automatización de facturas, recordatorios de cobro, registro de ventas desde mensajes, control de inventario, reportes automáticos. Todas resolvían algo real, y esa era justamente la dificultad.</p>
+
+<p>Para escoger apliqué tres criterios:</p>
+
+<div class="criteria">
+  <h4>Criterios de selección</h4>
+  <ol>
+    <li><strong>Que el negocio ya trabaje con citas.</strong> Si no las usa, el producto no tiene por dónde entrar.</li>
+    <li><strong>Que todavía no tenga un sistema.</strong> Si ya lo tiene, no estaría resolviendo un problema sino compitiendo contra quien lo resolvió primero.</li>
+    <li><strong>Que el dolor sea visible para el dueño.</strong> Un problema que no se percibe no se paga, por más real que sea.</li>
+  </ol>
+</div>
+
+<p>El agendamiento pasa los tres. El análisis de datos, que era la opción más llamativa desde lo técnico, falla el tercero: casi ningún dueño de barbería siente que le falte analítica, aunque le sirva.</p>
+
+<blockquote>
+  <p>Entrar por donde duele hoy es lo que hace que el cliente pruebe. Lo demás llega después, cuando ya hay confianza y el sistema lleva meses acumulando datos.</p>
+</blockquote>
+
+<p>El segmento se escogió con la misma lógica. Barberías y salones de una a cinco sillas agendan todo el día, casi ninguno usa software, y una silla vacía es una pérdida que el dueño puede calcular en el momento. Laureles-Estadio y Envigado tienen suficiente densidad de estos negocios como para validar la idea sin salir de dos zonas que puedo recorrer caminando.</p>
+
+<h3>El aval</h3>
+
+<p>Un emprendimiento dentro de la práctica profesional no se sostiene con la convicción de quien lo propone. Tiene que estar respaldado institucionalmente, y ese respaldo se construyó en tres momentos.</p>
+
+<p><strong>El cambio de modalidad.</strong> Había inscrito la práctica por contrato laboral, aprovechando mi vinculación actual, pero esa vía no resultó viable. Centro Progresa aprobó el cambio a modalidad de emprendimiento.</p>
+
+<p><strong>El registro de la propuesta.</strong> NovaIA quedó formalmente inscrita como proyecto de práctica, con su objetivo, su justificación y su alcance.</p>
+
+<p><strong>El acompañamiento.</strong> La universidad asignó una tutora de Centro Progresa para hacer seguimiento durante todo el periodo, y el plan de formación es el instrumento sobre el cual se hace ese seguimiento.</p>
+
+<p>Ese respaldo no es un trámite de entrada. Es lo que separa un proyecto personal de una práctica profesional: define ante quién respondo, cada cuánto, y contra qué documento se verifica el avance. Sin él podría construir exactamente el mismo sistema, pero nadie estaría revisando si lo que construí corresponde a lo que me comprometí a entregar, ni habría forma de acreditar el resultado ante el programa.</p>
+
+<div class="facts">
+  <div><dt>Inicio</dt><dd>24 ago 2026</dd></div>
+  <div><dt>Terminación</dt><dd>13 dic 2026</dd></div>
+  <div><dt>Duración</dt><dd>16 semanas</dd></div>
+  <div><dt>Horas</dt><dd>100</dd></div>
+  <div><dt>Dedicación</dt><dd>Lun a vie</dd></div>
+</div>
+<p class="cap"><b>Condiciones formalizadas ante Centro Progresa.</b> Las horas no son una estimación: están declaradas, y con ellas se mide el cumplimiento.</p>
+
+<h2 id="cierre"><span class="num">Cierre</span>Qué me deja formalizar</h2>
+
+<p>Cuando empezó la semana pensaba que formalizar era papeleo: llenar un formato, firmar, radicar.</p>
+
+<p>Lo que encontré fue otra cosa. El formato me obligó a responder preguntas que había estado aplazando. Qué entrego exactamente. En qué fecha. Cómo se verifica que lo hice.</p>
+
+<p>Mientras la idea vive en la cabeza siempre cabe una función más. Escrita, y con una fecha al lado, deja de caber. Con cien horas contadas y un trabajo de tiempo completo, eso me sirve más de lo que me limita.</p>
+
+</article>
+
+<aside class="authorbox">
+  <div class="avatar" aria-hidden="true">AJ</div>
+  <div class="who">
+    <p class="name">Andrés Camilo Jaramillo Rodríguez</p>
+    <p class="bio">Estudiante de Ingeniería de Sistemas en UNIMINUTO. Escribe aquí el avance de su práctica profesional en modalidad de emprendimiento, donde desarrolla NovaIA, un proyecto de automatización para negocios pequeños en Medellín.</p>
+  </div>
+</aside>
+</div>
+</body>
+</html>
